@@ -1,0 +1,17 @@
+﻿Add-Migration InitialCreate -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext
+
+Update-Database -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext
+
+Remove-Migration -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext
+
+
+
+Add-Migration InitialCreate -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
+Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
+Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext -Connection
+
+porque 
+
+
+
+sdfgsdfg
