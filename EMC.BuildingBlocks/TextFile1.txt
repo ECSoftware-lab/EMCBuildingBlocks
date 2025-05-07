@@ -10,8 +10,8 @@ Add-Migration InitialCreate -Project EMC.Infrastructure -StartupProject WebApi -
 Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
 Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext -Connection
 
-porque 
+porque gfhfh
 
-
+qwrqwer
 
 sdfgsdfg
