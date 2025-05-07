@@ -10,6 +10,5 @@ Add-Migration InitialCreate -Project EMC.Infrastructure -StartupProject WebApi -
 Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
 Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext -Connection
 
-porque  esto es solo de buildingBlock
-
-Esto es de producto no deberia llegar 
+git submodule add https://github.com/ECSoftware-lab/EMCBuildingBlocks.git \external\EMCBuildingBlocks
+git submodule add https://github.com/ECSoftware-lab/EMC.ReadModel.git external\EMC.ReadModel
