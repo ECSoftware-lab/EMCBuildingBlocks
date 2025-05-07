@@ -11,3 +11,5 @@ Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcD
 Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext -Connection
 
 porque  esto es solo de buildingBlock
+
+Esto es de producto no deberia llegar 
