@@ -1,6 +1,4 @@
-﻿using EMC.BuildingBlocks.EventBus;
-
-namespace EMC.BuildingBlocks.EventBus.IntegrationEvents.UserEvents
+﻿namespace EMC.BuildingBlocks.EventBus.IntegrationEvents.UserEvents
 {
     public class UserRecoverPasswordIntegrationEvent : IntegrationEvent
     {

@@ -1,31 +1,37 @@
 ﻿using EMC.BuildingBlocks.Context;
 using EMC.BuildingBlocks.Middleware;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace EMC.BuildingBlocks.DependencyInjection
 {
     public static class SharedServiceContainer
     {
-        public static IServiceCollection AddSharedServices<TContext>(this IServiceCollection services, IConfiguration config, string fileName) where TContext : DbContext
+        public static IServiceCollection AddSharedServices<TContext>(this IServiceCollection services, IConfiguration config
+            , string fileName, bool relationalBD = true) where TContext : DbContext
         {
             services.AddScoped<ICompanyExecutionContext, CompanyExecutionContext>();
 
-
-            var connectionString = config.GetConnectionString("DefaultConnection");
-
-            if (string.IsNullOrWhiteSpace(connectionString))
+            if (relationalBD)
             {
-                throw new InvalidOperationException("No se encontró la cadena de conexión 'DefaultConnection'. Verificá el appsettings.json del proyecto ProductApi.Presentation");
+                var connectionString = config.GetConnectionString("DefaultConnection");
+
+                if (string.IsNullOrWhiteSpace(connectionString))
+                {
+                    throw new InvalidOperationException("No se encontró la cadena de conexión 'DefaultConnection'. Verificá el appsettings.json del proyecto ProductApi.Presentation");
+                }
+
+                services.AddDbContext<TContext>(options =>
+                    options.UseNpgsql(connectionString)
+                );
+
+                AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             }
-
-            services.AddDbContext<TContext>(options =>
-                options.UseNpgsql(connectionString)
-            );
-
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+           
 
             // services.AddDbContextFactory<TContext>(options =>
             //options.UseNpgsql(config.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped
@@ -55,6 +61,25 @@ namespace EMC.BuildingBlocks.DependencyInjection
 
             app.UseMiddleware<ExceptionMiddleware>();
             return app;
+        }
+
+        public static IServiceCollection AddValidatorsFromAssembly(this IServiceCollection services, Assembly assembly)
+        {
+            var validatorTypes = assembly
+                .GetTypes()
+                .Where(t => !t.IsAbstract && !t.IsInterface)
+                .SelectMany(t =>
+                    t.GetInterfaces()
+                        .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IValidator<>))
+                        .Select(i => new { ValidatorType = t, InterfaceType = i }))
+                .ToList();
+
+            foreach (var v in validatorTypes)
+            {
+                services.AddScoped(v.InterfaceType, v.ValidatorType);
+            }
+
+            return services;
         }
     }
 }
