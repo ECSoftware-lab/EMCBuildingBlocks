@@ -4,9 +4,11 @@ namespace EMC.BuildingBlocks.Dtos
 {
     public record ProductFilterRequest : BasePaginationRequest
     {
-        public int CompanyId { get; set; }
-        public int? BrandId { get; set; }
-        public string? Article { get; set; }
+        public int CompanyId { get; set; } 
+        public bool? Integrity { get; set; }
+        public string? CodBar { get; set; }
+        public bool? ArticleHeader { get; set; }
+        public bool? LookAtSales { get; set; }
         public int? NumFilter { get; set; }
         public string? TextFilter { get; set; }
         public int? StateFilter { get; set; }
@@ -15,6 +17,8 @@ namespace EMC.BuildingBlocks.Dtos
         public bool? CategoriInclud { get; set; }
         public bool? AtributInclud { get; set; }
         public bool? AtributOtherInclud { get; set; }
-        public string? CodBar { get; set; }
+        public Dictionary<string, string> AttributeFilters { get; set; } = new();
+
+
     }
 }
