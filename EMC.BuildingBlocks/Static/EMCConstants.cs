@@ -31,13 +31,12 @@
 
         public class PersonTypeConst
         {
-
-            public const int Cliente = 1;
-            public const int Proveedor = 2;
-            public const int Empleado = 3;
-            public const int root = 4;
-            public const int Contador = 5;
-            public const int Visitante = 6;
+            public const int Empleado = 1;
+            public const int Cliente = 2;
+            public const int Proveedor = 3;
+           
+            public const int Contador = 4;
+            public const int Visitante = 5;
         }
 
         //public static List<PersonTypeDto> PersonTypeList = new List<PersonTypeDto>

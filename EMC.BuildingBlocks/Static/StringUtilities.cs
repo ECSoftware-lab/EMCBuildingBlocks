@@ -189,7 +189,7 @@ namespace EMC.BuildingBlocks.Static
             return string.Empty;
         }
 
-        public static Guid ConvertToGuidOrDefault(string input)
+        public static Guid ToGuidOrDefault(string input)
         {
             if (Guid.TryParse(input, out Guid result))
             {
@@ -202,7 +202,7 @@ namespace EMC.BuildingBlocks.Static
         }
         public static bool IsGuid(string input)
         {
-            var resp = ConvertToGuidOrDefault(input);
+            var resp = ToGuidOrDefault(input);
             return resp == Guid.Empty;
 
         }
