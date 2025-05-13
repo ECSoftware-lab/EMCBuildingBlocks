@@ -1,4 +1,4 @@
-﻿Add-Migration InitialCreate -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext
+﻿
 
 Update-Database -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext
 
@@ -12,3 +12,7 @@ Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcD
 
 git submodule add https://github.com/ECSoftware-lab/EMCBuildingBlocks.git \external\EMCBuildingBlocks
 git submodule add https://github.com/ECSoftware-lab/EMC.ReadModel.git external\EMC.ReadModel
+
+Add-Migration InitialCreate -Project EMC.Address.Infrastructure -StartupProject EMC.Address -Context AddressDbContext
+Update-Database -Project EMC.Address.Infrastructure -StartupProject EMC.Address -Context AddressDbContext
+

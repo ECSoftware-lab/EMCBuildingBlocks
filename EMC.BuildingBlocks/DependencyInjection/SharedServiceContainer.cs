@@ -31,7 +31,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
 
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             }
-           
+
 
             // services.AddDbContextFactory<TContext>(options =>
             //options.UseNpgsql(config.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped
@@ -48,7 +48,10 @@ namespace EMC.BuildingBlocks.DependencyInjection
             //    rollingInterval: RollingInterval.Day)
             //    .CreateLogger();
 
-            services.AddJWTAuthenticationScheme(config);
+            var autenthentication = config.GetValue<string>("Authentication:jwtKey");
+            if(!string.IsNullOrWhiteSpace(autenthentication))    
+                services.AddJWTAuthenticationScheme(config);
+
             services.AddRedisInyection(config);
 
             return services;

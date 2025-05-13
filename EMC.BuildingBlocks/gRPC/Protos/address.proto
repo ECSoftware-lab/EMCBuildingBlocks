@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "EMC.Address.Protos";
+
+import "google/protobuf/empty.proto";
+package address;
+
+message CreateAddressRequest {
+  string street = 1;
+  string streetNumber = 2;
+  string floor = 3;
+  string floorLetter = 4;
+  string complement = 5;
+  string zipcode = 6;
+  int32 city = 7;
+  string state = 8;
+  string country = 9;
+  string addressId = 10;
+}
+
+message CreateAddressResponse {
+  string addressId = 1;
+  string addressIdReal = 2;
+}
+
+message AddressByIdRequest {
+  string id = 1;
+}
+
+message AddressDto {
+  string street = 1;
+  string streetNumber = 2;
+  string floor = 3;
+  string floorLetter = 4;
+  string complement = 5;
+  string zipcode = 6;
+  string city = 7;
+  string state = 8;
+  string country = 9;
+}
+service AddressProtoService{
+	rpc GetAddressById(AddressByIdRequest) returns(AddressDto);
+	rpc CreateAddress(CreateAddressRequest) returns(CreateAddressResponse);
+}

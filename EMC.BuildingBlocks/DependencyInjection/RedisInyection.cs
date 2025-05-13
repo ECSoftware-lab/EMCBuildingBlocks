@@ -15,10 +15,12 @@ namespace EMC.BuildingBlocks.DependencyInjection
 
             var prueba = config.GetValue<string>("MongoDbSettings:ConnectionString");
 
-
-            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConn!));
-            services.AddSingleton<IRedisCacheRepository, RedisCacheRepository>();
-            services.AddSingleton<ICompanyConfigurationCacheService, CompanyConfigurationCacheService>();
+            if (!string.IsNullOrEmpty(redisConn))
+            {
+                services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConn!));
+                services.AddSingleton<IRedisCacheRepository, RedisCacheRepository>();
+                services.AddSingleton<ICompanyConfigurationCacheService, CompanyConfigurationCacheService>();
+            }
             return services;
         }
     }
