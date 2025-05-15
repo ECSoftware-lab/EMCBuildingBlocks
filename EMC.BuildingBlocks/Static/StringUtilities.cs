@@ -203,7 +203,7 @@ namespace EMC.BuildingBlocks.Static
         public static bool IsGuid(string input)
         {
             var resp = ToGuidOrDefault(input);
-            return resp == Guid.Empty;
+            return resp != Guid.Empty;
 
         }
         public static decimal ConvertToDecimal(string input)

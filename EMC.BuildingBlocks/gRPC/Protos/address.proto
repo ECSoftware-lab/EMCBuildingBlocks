@@ -37,6 +37,8 @@ message AddressDto {
   string city = 7;
   string state = 8;
   string country = 9;
+  int32 cityid=10;
+   string addressId=11;
 }
 service AddressProtoService{
 	rpc GetAddressById(AddressByIdRequest) returns(AddressDto);

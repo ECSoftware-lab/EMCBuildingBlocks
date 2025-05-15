@@ -1,4 +1,6 @@
-﻿using EMC.BuildingBlocks.Context;
+﻿using EMC.BuildingBlocks.Application.AppBuilders;
+using EMC.BuildingBlocks.Context;
+using EMC.BuildingBlocks.Interfaces;
 using EMC.BuildingBlocks.Middleware;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +17,8 @@ namespace EMC.BuildingBlocks.DependencyInjection
             , string fileName, bool relationalBD = true) where TContext : DbContext
         {
             services.AddScoped<ICompanyExecutionContext, CompanyExecutionContext>();
-
+            services.AddScoped<IAddressAppBuilder, AddressAppBuilder>();
+            
             if (relationalBD)
             {
                 var connectionString = config.GetConnectionString("DefaultConnection");
