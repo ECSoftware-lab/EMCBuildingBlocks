@@ -16,3 +16,4 @@ git submodule add https://github.com/ECSoftware-lab/EMC.ReadModel.git external\E
 Add-Migration InitialCreate -Project EMC.Address.Infrastructure -StartupProject EMC.Address -Context AddressDbContext
 Update-Database -Project EMC.Address.Infrastructure -StartupProject EMC.Address -Context AddressDbContext
 
+
