@@ -1,4 +1,7 @@
-﻿namespace EMC.BuildingBlocks.Static
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace EMC.BuildingBlocks.Static
 {
     public class EMCConstants
     {
@@ -34,20 +37,19 @@
             public const int Empleado = 1;
             public const int Cliente = 2;
             public const int Proveedor = 3;
-           
             public const int Contador = 4;
             public const int Visitante = 5;
         }
 
-        //public static List<PersonTypeDto> PersonTypeList = new List<PersonTypeDto>
-        // {
-        //new PersonTypeDto {Id = PersonTypeConst.root, Name = "Root"},
-        //new PersonTypeDto {Id = PersonTypeConst.Cliente, Name = "Cliente"},
-        //new PersonTypeDto {Id = PersonTypeConst.Empleado, Name = "Empleado"},
-        //new PersonTypeDto {Id = PersonTypeConst.Proveedor, Name = "Proveedor"},
-        //new PersonTypeDto {Id = PersonTypeConst.Contador, Name = "Contador"},
-        //new PersonTypeDto {Id = PersonTypeConst.Visitante, Name = "Visitante"}
-        //};
+        public static Dictionary<int, string> PersonTypeList = new Dictionary<int, string>
+            {
+        { PersonTypeConst.Cliente, "Cliente" },
+        { PersonTypeConst.Empleado, "Empleado" },
+        { PersonTypeConst.Proveedor, "Proveedor" },
+        { PersonTypeConst.Contador, "Contador" },
+        { PersonTypeConst.Visitante, "Visitante" }
+         };
+
         // public static List<ProductAtributeTypeDTO> ProductAtributeTypeList = new List<ProductAtributeTypeDTO>
 
         public class Attributes

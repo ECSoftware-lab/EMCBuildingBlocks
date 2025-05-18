@@ -7,6 +7,8 @@ Remove-Migration -Project ProductApi.Infrastructure -StartupProject ProductApi.P
 
 
 Add-Migration InitialCreate -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
+Add-Migration RefactorPersonType -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
+
 Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
 Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext -Connection
 

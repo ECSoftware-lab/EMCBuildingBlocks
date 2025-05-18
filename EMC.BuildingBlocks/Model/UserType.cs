@@ -3,14 +3,14 @@
 public enum UserType
 {
     ROOT,
-    AdminT2,
-    AdminT1,
-    EmpleadoT2,
-    EmpleadoT1,
-    ClienteT2,
-    CLienteT1,
+    ADMIN_T2,
+    ADMIN_T1,
+    EMPLEADO_T2,
+    EMPLEADO_T1,
+    CLIENTE_T2,
+    CLIENTE_T1,
     Basico,
-    Visitante,
+    VISITANTE,
 }
 public static class UserTypeList
 {
@@ -20,17 +20,17 @@ public static class UserTypeList
         .ToList();
 
     public static readonly List<(string Name, int Value)> TypesAdmin = Enum.GetValues(typeof(UserType))
-      .Cast<UserType>().Where(x => x == UserType.AdminT2 || x == UserType.AdminT1 || x == UserType.ROOT)
+      .Cast<UserType>().Where(x => x == UserType.ADMIN_T2 || x == UserType.ADMIN_T1 || x == UserType.ROOT)
       .Select(x => (x.ToString(), (int)x))
       .ToList();
 
     public static readonly List<(string Name, int Value)> TypesEmploye = Enum.GetValues(typeof(UserType))
-     .Cast<UserType>().Where(x => x == UserType.EmpleadoT1 || x == UserType.EmpleadoT2)
+     .Cast<UserType>().Where(x => x == UserType.EMPLEADO_T1 || x == UserType.EMPLEADO_T2)
      .Select(x => (x.ToString(), (int)x))
      .ToList();
 
     public static readonly List<(string Name, int Value)> TypesCustomer = Enum.GetValues(typeof(UserType))
-   .Cast<UserType>().Where(x => x == UserType.ClienteT2 || x == UserType.CLienteT1 || x == UserType.Visitante)
+   .Cast<UserType>().Where(x => x == UserType.CLIENTE_T1 || x == UserType.CLIENTE_T2 || x == UserType.VISITANTE)
    .Select(x => (x.ToString(), (int)x))
    .ToList();
 
@@ -106,5 +106,9 @@ public static class UserTypeList
         {
             throw new ArgumentException("Invalid numeric value for UserType.", nameof(numericValue));
         }
+    }
+    public static string GetUserTypeString(UserType userType)
+    {
+        return Enum.GetName(typeof(UserType), userType);
     }
 }
