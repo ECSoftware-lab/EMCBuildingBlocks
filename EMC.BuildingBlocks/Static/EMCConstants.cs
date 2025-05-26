@@ -19,6 +19,15 @@ namespace EMC.BuildingBlocks.Static
             public const int Otro = 8;
         };
 
+        public class LevelLog
+        {
+            public const int Critical = 6;
+            public const int Error = 5;
+            public const int Warning = 4;
+            public const int notImpl = 3;
+            public const int notImple = 2;
+            public const int Info = 1;
+        }
         //public static List<SelectDTO> DocumentTypeList = new List<SelectDTO>
         //{
         //    new SelectDTO { Id = DocumentType.DNI, Name = "DNI" },
@@ -81,6 +90,7 @@ namespace EMC.BuildingBlocks.Static
             public const string Update = "UPDATE";
             public const string Gets = "GET";
         }
+
 
         public static List<string> soThatList = new()
         {

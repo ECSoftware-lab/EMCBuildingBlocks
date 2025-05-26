@@ -3,8 +3,9 @@
     public interface ICompanyExecutionContext
     {
         Guid UserId { get; }
+        string UserName { get; }
         int CompanyId { get; }
-        string Email { get; }
+        
         List<string> Roles { get; }
         Dictionary<string, string> Claims { get; }
         int? ActiveSubsidiaryId { get; }

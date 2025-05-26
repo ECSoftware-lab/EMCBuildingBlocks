@@ -40,7 +40,24 @@ message AddressDto {
   int32 cityid=10;
    string addressId=11;
 }
+message CreateAddressItemResult {
+  CreateAddressRequest request = 1;
+  CreateAddressResponse response = 2;
+  bool success = 3;
+  string errorMessage = 4;
+}
+
+message CreateListAddressRequest {
+  repeated CreateAddressRequest addresses = 1;
+}
+
+message CreateListAddressResponse {
+  repeated CreateAddressItemResult results = 1;
+}
+
 service AddressProtoService{
 	rpc GetAddressById(AddressByIdRequest) returns(AddressDto);
 	rpc CreateAddress(CreateAddressRequest) returns(CreateAddressResponse);
+  rpc CreateListAddress(CreateListAddressRequest) returns (CreateListAddressResponse);
 }
+ 

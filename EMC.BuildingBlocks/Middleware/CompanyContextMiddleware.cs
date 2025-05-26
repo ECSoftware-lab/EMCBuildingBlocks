@@ -1,5 +1,6 @@
 ﻿using EMC.BuildingBlocks.Cache;
 using EMC.BuildingBlocks.Context;
+using EMC.BuildingBlocks.Static.Extensions;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
@@ -16,6 +17,14 @@ namespace EMC.BuildingBlocks.Middleware
 
         public async Task Invoke(HttpContext context, ICompanyExecutionContext companyContext, ICompanyConfigurationCacheService ConfiCahe)
         {
+            Console.WriteLine("TOKEN: " + context.Request.Headers["Authorization"]);
+
+            //var user = context.User;
+            //if (user!= null && user.Identity.IsAuthenticated)
+            //{
+            //    var userName = context.User.GetUserName();
+            //    var userId = context.User.GetUserId();
+            //}
             if (companyContext is CompanyExecutionContext ctx)
             {
                 var companyIdHeader = context.Request.Headers["X-CompanyId"].FirstOrDefault();
@@ -26,11 +35,13 @@ namespace EMC.BuildingBlocks.Middleware
                     await context.Response.WriteAsync("User/Company invalid");
                     return;
                 }
-
+                var tClaims = context.User.Claims;
                 ctx.CompanyId = companyId;
-                ctx.Email = context.User.FindFirst(ClaimTypes.Email)?.Value;
+                ctx.UserName = context.User.FindFirst(ClaimTypes.Email)?.Value;
                 ctx.Roles = context.User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
-                ctx.Claims = context.User.Claims.ToDictionary(c => c.Type, c => c.Value);
+                ctx.Claims = context.User.Claims
+                            .GroupBy(c => c.Type)
+                             .ToDictionary(g => g.Key, g => g.First().Value);
 
                 var config = await ConfiCahe.GetCompanyConfigAsync(companyId);
                 if (config == null)

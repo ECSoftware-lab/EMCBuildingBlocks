@@ -25,7 +25,7 @@
 
         public static List<ApiError> Messages = new List<ApiError>
         {new ApiError{ Code = Codes.AlreadyReported, Message = "Ya Implementado. " },
-            new ApiError{ Code = Codes.FieldNotValid, Message = "El valor del campo no se encuentra dentro de los parámetros. " },
+            new ApiError{ Code = Codes.FieldNotValid, Message = "El valor del campo no es valido. " },
             new ApiError{ Code = Codes.FieldNull, Message = "El campo es Obligatorio. Campo en cuestion: " },
             new ApiError{ Code = Codes.FieldDuplicate, Message = "El campo esta Duplicado. Campo en cuestion: " },
             new ApiError{ Code = Codes.DontMatch, Message = "No coinciden"},

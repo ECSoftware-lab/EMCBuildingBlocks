@@ -51,9 +51,9 @@ namespace EMC.BuildingBlocks.DependencyInjection
             //    rollingInterval: RollingInterval.Day)
             //    .CreateLogger();
 
-            var autenthentication = config.GetValue<string>("Authentication:jwtKey");
-            if(!string.IsNullOrWhiteSpace(autenthentication))    
-                services.AddJWTAuthenticationScheme(config);
+            //var autenthentication = config.GetValue<string>("Authentication:jwtKey");
+            //if (!string.IsNullOrWhiteSpace(autenthentication))
+            //    services.AddJWTAuthenticationScheme(config);
 
             services.AddRedisInyection(config);
 
@@ -63,7 +63,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
         public static IApplicationBuilder UseSharedPolicies(this IApplicationBuilder app)
         {
 
-            app.UseMiddleware<CompanyContextMiddleware>();
+           // app.UseMiddleware<CompanyContextMiddleware>();
 
             app.UseMiddleware<ExceptionMiddleware>();
             return app;
