@@ -13,7 +13,6 @@ namespace EMC.BuildingBlocks.Cache
             _redisConnection = redis;
             _db = redis.GetDatabase();
         }
-
         public async Task<T?> GetAsync<T>(string key)
         {
             var json = await _db.StringGetAsync(key);
