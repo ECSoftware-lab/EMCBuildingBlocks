@@ -15,7 +15,6 @@ namespace EMC.BuildingBlocks.Cache
         }
         public async Task<T?> GetAsync<T>(string key)
         {
-
             var json = await _db.StringGetAsync(key);
             if (json.IsNullOrEmpty) return default;
             return JsonConvert.DeserializeObject<T>(json);
