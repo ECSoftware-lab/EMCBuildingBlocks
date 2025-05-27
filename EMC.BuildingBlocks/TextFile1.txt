@@ -19,3 +19,5 @@ Add-Migration InitialCreate -Project EMC.Address.Infrastructure -StartupProject 
 Update-Database -Project EMC.Address.Infrastructure -StartupProject EMC.Address -Context AddressDbContext
 
 
+git add .
+git commit -m "Añadiendo cambios en dev01"
