@@ -19,12 +19,7 @@ namespace EMC.BuildingBlocks.Middleware
         {
             Console.WriteLine("TOKEN: " + context.Request.Headers["Authorization"]);
 
-            //var user = context.User;
-            //if (user!= null && user.Identity.IsAuthenticated)
-            //{
-            //    var userName = context.User.GetUserName();
-            //    var userId = context.User.GetUserId();
-            //}
+
             if (companyContext is CompanyExecutionContext ctx)
             {
                 var companyIdHeader = context.Request.Headers["X-CompanyId"].FirstOrDefault();
@@ -42,6 +37,14 @@ namespace EMC.BuildingBlocks.Middleware
                 ctx.Claims = context.User.Claims
                             .GroupBy(c => c.Type)
                              .ToDictionary(g => g.Key, g => g.First().Value);
+
+                var user = context.User;
+                if (user != null && user.Identity.IsAuthenticated)
+                {
+                    var userName = context.User.GetUserName();
+                    var userGuid = context.User.GetUserId();
+                    ctx.UserId = userGuid ?? Guid.Empty; 
+                }
 
                 var config = await ConfiCahe.GetCompanyConfigAsync(companyId);
                 if (config == null)

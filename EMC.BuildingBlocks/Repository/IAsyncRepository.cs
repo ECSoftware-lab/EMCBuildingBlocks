@@ -22,7 +22,7 @@ namespace EMC.BuildingBlocks.Repository
                                        bool disableTracking = true);
 
 
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(int id, bool disableTracking = true);
 
         Task<T> AddAsync(T entity);
 
