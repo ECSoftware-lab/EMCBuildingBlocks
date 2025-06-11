@@ -22,6 +22,31 @@ namespace EMC.BuildingBlocks.Exceptions
             Errors = new List<ApiError>();
             Remarks = new List<string>();
         }
+        public BadRequestException(string message, Exception ex, HttpStatusCode? statusCode = null)
+    : base(message, ex)
+        {
+            Status = statusCode ?? HttpStatusCode.BadRequest;
+            Timestamp = DateTime.UtcNow;
+            Message = message;
+            Errors = new List<ApiError>();
+
+            Remarks = new List<string>();
+            if (ex?.InnerException != null)
+            {
+                Errors.Add(new ApiError
+                {
+                    Code = 805,
+                    Message = ex.InnerException.Message
+                });
+            }
+            if (ex != null)
+            {
+                Remarks.Add($"Inner: {ex.Message}");
+                // O más detallado si lo necesitás:
+                // Remarks.Add($"StackTrace: {ex.StackTrace}");
+            }
+        }
+
         public BadRequestException(string message, List<ApiError> errors, HttpStatusCode? statusCode = null) : base(message)
         {
             Status = statusCode ?? HttpStatusCode.BadRequest;
