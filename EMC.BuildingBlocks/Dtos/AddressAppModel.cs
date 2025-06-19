@@ -16,5 +16,6 @@
         
         public bool IsCreate { get; set; }
         public bool IsFavorit { get; set; }
+        public bool Status { get; set; }
     }
 }

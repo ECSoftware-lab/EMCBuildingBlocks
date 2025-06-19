@@ -2,8 +2,8 @@
 {
     public interface ICompanyConfigurationCacheService
     {
-        Task<Dictionary<string, string>?> GetCompanyConfigAsync(int companyId);
-        Task RemoveCompanyConfigAsync(int companyId);
-        Task SetCompanyConfigAsync(int companyId, Dictionary<string, string> config);
+        Task<Dictionary<string, string>?> GetCompanyConfigAsync(Guid companyId);
+        Task RemoveCompanyConfigAsync(Guid companyId);
+        Task SetCompanyConfigAsync(Guid companyId, Dictionary<string, string> config);
     }
 }

@@ -3,7 +3,7 @@
     public class CompanyExecutionContext : ICompanyExecutionContext
     {
         public Guid UserId { get; set; }
-        public int CompanyId { get; set; }
+        public Guid CompanyId { get; set; }
         public string UserName { get; set; }
         public List<string> Roles { get; set; } = new();
         public Dictionary<string, string> Claims { get; set; } = new();

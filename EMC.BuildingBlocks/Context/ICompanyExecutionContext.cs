@@ -4,7 +4,7 @@
     {
         Guid UserId { get; }
         string UserName { get; }
-        int CompanyId { get; }
+        Guid CompanyId { get; }
         
         List<string> Roles { get; }
         Dictionary<string, string> Claims { get; }

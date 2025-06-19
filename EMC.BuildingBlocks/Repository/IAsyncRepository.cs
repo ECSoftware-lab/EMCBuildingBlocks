@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace EMC.BuildingBlocks.Repository
 {
-    public interface IAsyncRepository<T> where T : BaseDomainModel
+    public interface IAsyncRepository<T> where T : BaseDomain
     {
         Task<IReadOnlyList<T>> GetAllAsync();
         //IQueryable<TModelo> Ordering<TModelo>(BasePaginationRequest request, IQueryable<TModelo> query, bool pagination = false) where TModelo : BasePaginationRequest;
@@ -22,7 +22,7 @@ namespace EMC.BuildingBlocks.Repository
                                        bool disableTracking = true);
 
 
-        Task<T> GetByIdAsync(int id, bool disableTracking = true);
+        Task<T> GetByIdAsync(Guid id, bool disableTracking = true);
 
         Task<T> AddAsync(T entity);
 

@@ -24,7 +24,7 @@ namespace EMC.BuildingBlocks.Middleware
             {
                 var companyIdHeader = context.Request.Headers["X-CompanyId"].FirstOrDefault();
 
-                if (!int.TryParse(companyIdHeader, out var companyId))
+                if (!Guid.TryParse(companyIdHeader, out var companyId))
                 {
                     context.Response.StatusCode = 403;
                     await context.Response.WriteAsync("User/Company invalid");

@@ -10,17 +10,17 @@
             _cache = cache;
         }
 
-        public Task SetCompanyConfigAsync(int companyId, Dictionary<string, string> config)
+        public Task SetCompanyConfigAsync(Guid companyId, Dictionary<string, string> config)
         {
             var key = $"{KeyPrefix}{companyId}";
             return _cache.SetAsync(key, config);
         }
-        public Task RemoveCompanyConfigAsync(int companyId)
+        public Task RemoveCompanyConfigAsync(Guid companyId)
         {
             var key = $"{KeyPrefix}{companyId}";
             return _cache.RemoveAsync(key);
         }
-        public Task<Dictionary<string, string>?> GetCompanyConfigAsync(int companyId)
+        public Task<Dictionary<string, string>?> GetCompanyConfigAsync(Guid companyId)
         {
             var key = $"{KeyPrefix}{companyId}";
             return _cache.GetAsync<Dictionary<string, string>>(key);
