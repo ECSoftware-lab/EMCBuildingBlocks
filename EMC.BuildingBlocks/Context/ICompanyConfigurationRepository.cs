@@ -2,7 +2,7 @@
 {
     public interface ICompanyConfigurationRepository
     {
-        Task<Dictionary<string, string>> GetAllByCompanyAsync(int companyId);
+        Task<Dictionary<string, string>> GetAllByCompanyAsync(Guid companyId);
 
     }
 

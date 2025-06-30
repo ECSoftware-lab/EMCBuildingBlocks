@@ -48,11 +48,11 @@
         }
 
         // Extra: método específico para confirmación de correo
-        public static string BuildEmailConfirmationUrl(string schema, string host, string userId, string token)
+        public static string BuildEmailConfirmationUrl(string schema, string host, string companyUserId, string token)
         {
             return BuildUrl(schema, host, "Access", "ConfirmEmail", new Dictionary<string, string>
             {
-                { "userid", userId },
+                { "userid", companyUserId },
                 { "cadena", token }
             });
         }

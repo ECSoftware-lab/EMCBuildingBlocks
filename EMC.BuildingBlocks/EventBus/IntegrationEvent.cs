@@ -4,7 +4,7 @@
     {
         public Guid IdEvent { get; private set; }
         public DateTime OccurredOn { get; private set; }
-        public int CompanyId { get; set; }
+        public Guid CompanyId { get; set; }
         protected IntegrationEvent()
         {//pregunta en que momento se llama a este metodo ? 
             IdEvent = Guid.NewGuid();
