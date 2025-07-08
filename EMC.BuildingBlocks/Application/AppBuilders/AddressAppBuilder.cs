@@ -19,7 +19,7 @@ namespace EMC.BuildingBlocks.Application.AppBuilders
                 Complement = address.Complement,
                 State= address.State,
                 Country= address.Country,
-                Zipcode = address.Zipcode,
+                ZipCode = address.Zipcode,
                 IsCreate = isCreate,
                 IsFavorit = isFavorit,
             };

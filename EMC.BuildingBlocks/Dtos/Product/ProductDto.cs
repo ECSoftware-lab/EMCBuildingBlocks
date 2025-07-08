@@ -4,9 +4,9 @@ namespace EMC.BuildingBlocks.Dtos.Product;
 public class ProductDto
 {
     [JsonPropertyOrder(1)]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     [JsonPropertyOrder(2)]
-    public int CompanyId { get; set; }
+    public Guid CompanyId { get; set; }
     [JsonPropertyOrder(3)]
     public bool Integrity { get; set; }
 

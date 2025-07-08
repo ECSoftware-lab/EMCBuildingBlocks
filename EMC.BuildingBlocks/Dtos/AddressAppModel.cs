@@ -9,7 +9,7 @@
         public string FloorLetter { get; set; }
         public string Street { get; set; }
         public string StreetNumber { get; set; }
-        public string Zipcode { get; set; }
+        public string ZipCode { get; set; }
         public string Complement { get; set; }
         public string? State { get; set; }
         public string? Country { get; set; }
