@@ -4,7 +4,7 @@ namespace EMC.BuildingBlocks.Dtos
 {
     public record ProductFilterRequest : BasePaginationRequest
     {
-        public int CompanyId { get; set; } 
+        public string CompanyId { get; set; } 
         public bool? Integrity { get; set; }
         public string? CodBar { get; set; }
         public bool? ArticleHeader { get; set; }

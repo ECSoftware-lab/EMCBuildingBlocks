@@ -32,5 +32,6 @@ namespace EMC.BuildingBlocks.Repository
         Task<T> GetByIdAsync(int id, List<Expression<Func<T, object>>> includes = null, bool disableTracking = true);
         Task<IQueryable<T>> GetAllFilt(Expression<Func<T, bool>> filter = null);
         Task<T> AddAsyncCustom(T entity);
+        void DetachEntityIfTracked<TEntity>(TEntity entity) where TEntity : class;
     }
 }

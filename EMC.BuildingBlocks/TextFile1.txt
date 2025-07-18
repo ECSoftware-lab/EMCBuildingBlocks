@@ -1,5 +1,5 @@
 ﻿
-
+Add-Migration InitialCreate -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext
 Update-Database -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext
 
 Remove-Migration -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext

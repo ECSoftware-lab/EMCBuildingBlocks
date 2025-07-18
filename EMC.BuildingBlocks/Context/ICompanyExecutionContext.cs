@@ -10,6 +10,7 @@
         Dictionary<string, string> Claims { get; }
         int? ActiveSubsidiaryId { get; }
         Dictionary<string, string> Configurations { get; set; }
+        int KindId {  get; }
     }
 
 }

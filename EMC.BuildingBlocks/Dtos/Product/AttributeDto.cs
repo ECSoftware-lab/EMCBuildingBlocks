@@ -2,7 +2,7 @@
 {
     public class AttributeDto
     {
-        public int AttrId { get; set; } // Company_Attribute_Id
+        public int CompanyAttributeTypeId { get; set; } 
         public string Name { get; set; }
         public string Value { get; set; }
         public int Order { get; set; }

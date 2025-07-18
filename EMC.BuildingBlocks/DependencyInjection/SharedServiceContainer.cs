@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Microsoft.Extensions.Logging;
 
 namespace EMC.BuildingBlocks.DependencyInjection
 {
@@ -27,14 +28,20 @@ namespace EMC.BuildingBlocks.DependencyInjection
                 {
                     throw new InvalidOperationException("No se encontró la cadena de conexión 'DefaultConnection'. Verificá el appsettings.json del proyecto ProductApi.Presentation");
                 }
-
                 services.AddDbContext<TContext>(options =>
-                    options.UseNpgsql(connectionString)
-                );
+                {
+                    options.UseNpgsql(connectionString);
+                    options.EnableSensitiveDataLogging();
+                    options.LogTo(Console.WriteLine, LogLevel.Information);
+                });
+                //services.AddDbContext<TContext>(options =>
+                //    options.UseNpgsql(connectionString)
+                //    .EnableSensitiveDataLogging()
+                //);
 
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             }
-
+           
 
             // services.AddDbContextFactory<TContext>(options =>
             //options.UseNpgsql(config.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped

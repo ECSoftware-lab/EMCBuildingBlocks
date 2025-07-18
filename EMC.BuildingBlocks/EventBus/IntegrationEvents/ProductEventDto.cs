@@ -2,8 +2,8 @@
 {
     public class ProductEventDto
     {
-        public int ProductId { get; set; }
-        public int CompanyId { get; set; }
+        public Guid ProductId { get; set; }
+        public Guid CompanyId { get; set; }
         public bool Status { get; set; }
         public string? CodBarra { get; set; }
         public bool LookAtSales { get; set; }

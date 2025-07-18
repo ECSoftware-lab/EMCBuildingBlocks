@@ -10,5 +10,6 @@
         public int? ActiveSubsidiaryId { get; set; }
         public Dictionary<string, string> Configurations { get; set; } = new();
 
+        public int KindId { get; set; }
     }
 }
