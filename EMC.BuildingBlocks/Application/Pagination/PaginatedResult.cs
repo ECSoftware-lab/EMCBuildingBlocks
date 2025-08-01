@@ -13,15 +13,16 @@
 
         public int StartPage => start <= 0 ? 1 : Math.Min(start, TotalPages);
         public int EndPage => end > TotalPages ? TotalPages : Math.Min(end, TotalPages);
-
+        public string Observation {  get; init; }
         public IReadOnlyList<T> Items { get; init; }
 
-        public PaginatedResult(IReadOnlyList<T> items, long totalItems, int currentPage, int pageSize)
+        public PaginatedResult(IReadOnlyList<T> items, long totalItems, int currentPage, int pageSize,string observation)
         {
             Items = items;
             TotalItems = totalItems;
             CurrentPage = currentPage;
             PageSize = pageSize;
+            Observation=observation;
         }
     }
 

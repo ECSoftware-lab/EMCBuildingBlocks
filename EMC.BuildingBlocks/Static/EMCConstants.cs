@@ -5,6 +5,25 @@ namespace EMC.BuildingBlocks.Static
 {
     public class EMCConstants
     {
+        public class TypeFilterProd
+        {
+            public const int ContainedText = 1;
+            public const int ExactText = 2;
+            public const int StartText = 3;
+            public const int NotSerchText = 4;
+        }
+
+        public static Dictionary<int, string> TypeFilterProdList = new Dictionary<int, string>
+            {
+        { TypeFilterProd.ContainedText, "Busco contenido en, " },
+        { TypeFilterProd.ExactText, "Busco coincidencia exacta " },
+        { TypeFilterProd.StartText, "Busco al principio" } ,
+        { TypeFilterProd.NotSerchText, "" }
+         };
+
+
+
+
         public static List<string> ExtensionsImagen = new List<string> { "jpg", "jpeg", "png", "gif", "bmp" };
 
         public class DocumentType
@@ -60,6 +79,7 @@ namespace EMC.BuildingBlocks.Static
          };
 
         // public static List<ProductAtributeTypeDTO> ProductAtributeTypeList = new List<ProductAtributeTypeDTO>
+
 
         public class Attributes
         {

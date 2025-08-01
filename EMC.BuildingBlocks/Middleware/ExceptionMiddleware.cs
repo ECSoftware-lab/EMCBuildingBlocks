@@ -97,7 +97,7 @@ namespace EMC.BuildingBlocks.Middleware
                 await context.Response.WriteAsync(jsonResponse);
             }
 
-        }
+        }//lo que si veo es que sale por aqui y no entra a ninguna opcion 
 
         private static async Task ModifyHeader(HttpContext context, ApiResponse<string> apiResponse, int statusCode)
         {

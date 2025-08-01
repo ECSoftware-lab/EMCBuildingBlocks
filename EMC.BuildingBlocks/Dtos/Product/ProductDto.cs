@@ -1,32 +1,32 @@
-﻿using System.Text.Json.Serialization;
+﻿
+using Newtonsoft.Json;
 
 namespace EMC.BuildingBlocks.Dtos.Product;
 public class ProductDto
 {
-    [JsonPropertyOrder(1)]
+    [JsonProperty(Order = 1)]
     public Guid Id { get; set; }
-    [JsonPropertyOrder(2)]
+    [JsonProperty(Order = 2)]
     public Guid CompanyId { get; set; }
-    [JsonPropertyOrder(3)]
+    [JsonProperty(Order =3)]
     public bool Integrity { get; set; }
 
-    [JsonPropertyOrder(4)]
+    [JsonProperty(Order = 4)]
     public List<AttributeDto> Attributes { get; set; }
-
-    [JsonPropertyOrder(5)]
+    [JsonProperty(Order = 5)]
     public List<AttributeOtherDto>? OtherAttributes { get; set; }
-    [JsonPropertyOrder(6)]
+    [JsonProperty(Order = 6)]
     public string CodBarra { get; set; }
-    [JsonPropertyOrder(7)]
+    [JsonProperty(Order = 7)]
     public bool LookAtSales { get; set; }
-    
-    [JsonPropertyOrder(8)]
+
+    [JsonProperty(Order = 8)]
     public bool ArticleHeader { get; set; }
 
-    [JsonPropertyOrder(9)]
+    [JsonProperty(Order = 9)]
     public CategoryPathResultDto? Categories { get; set; }
-    [JsonPropertyOrder(10)]
+    [JsonProperty(Order = 10)]
     public BaseDto Base { get; set; }
-    [JsonPropertyOrder(11)]
+    [JsonProperty(Order = 11)]
     public bool Status { get; set; }
 }

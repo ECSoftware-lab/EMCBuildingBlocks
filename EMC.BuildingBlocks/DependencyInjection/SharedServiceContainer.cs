@@ -28,16 +28,13 @@ namespace EMC.BuildingBlocks.DependencyInjection
                 {
                     throw new InvalidOperationException("No se encontró la cadena de conexión 'DefaultConnection'. Verificá el appsettings.json del proyecto ProductApi.Presentation");
                 }
-                services.AddDbContext<TContext>(options =>
+                services.AddDbContextFactory<TContext>(options =>
                 {
                     options.UseNpgsql(connectionString);
                     options.EnableSensitiveDataLogging();
                     options.LogTo(Console.WriteLine, LogLevel.Information);
-                });
-                //services.AddDbContext<TContext>(options =>
-                //    options.UseNpgsql(connectionString)
-                //    .EnableSensitiveDataLogging()
-                //);
+                }); //, ServiceLifetime.Transient
+
 
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             }

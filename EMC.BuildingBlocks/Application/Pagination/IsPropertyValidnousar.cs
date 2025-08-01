@@ -2,8 +2,9 @@
 
 namespace EMC.BuildingBlocks.Application.Pagination
 {
-    public class IsPropertyValid<T>
+    public class IsPropertyValidnousar<T>
     {
+        //validar si esta bien eeste metodo 
         public T? evaluar { get; set; }
         public static bool IsValid(string propName)
         {

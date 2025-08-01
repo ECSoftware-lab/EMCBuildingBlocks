@@ -55,8 +55,10 @@ namespace EMC.BuildingBlocks.Wrappers
             Message = string.IsNullOrEmpty(message) ? "Ocurrio un error inesperado" : message;
         }
         public static ApiResponse<T> Failure(string title,
-            List<ApiError> errors, HttpStatusCode? statu = HttpStatusCode.BadRequest)
+            List<ApiError> errors,  HttpStatusCode? statu = HttpStatusCode.BadRequest)
             => new ApiResponse<T>(title, errors, statu);
+
+
         public static ApiResponse<T> Failure(string title,
            List<EventId> errors, HttpStatusCode? statu = HttpStatusCode.BadRequest)
            => new ApiResponse<T>(title, errors, statu);

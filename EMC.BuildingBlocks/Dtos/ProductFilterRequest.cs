@@ -4,6 +4,7 @@ namespace EMC.BuildingBlocks.Dtos
 {
     public record ProductFilterRequest : BasePaginationRequest
     {
+        //Esto es para el Real-Model de mongo 
         public string CompanyId { get; set; } 
         public bool? Integrity { get; set; }
         public string? CodBar { get; set; }
