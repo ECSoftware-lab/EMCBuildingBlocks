@@ -2,6 +2,7 @@
 
 namespace EMC.BuildingBlocks.Application
 {
+     
 
     public class ApiError : IEquatable<ApiError>
     {
