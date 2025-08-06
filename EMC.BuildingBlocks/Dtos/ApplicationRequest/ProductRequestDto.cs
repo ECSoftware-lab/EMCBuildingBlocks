@@ -9,8 +9,8 @@
         public bool? Integrity { get; set; }
         public bool ArticleHeader { get; set; }
         public string? Article { get; set; }
-        public Dictionary<string, List<string>> Attributes { get; set; }
-        public Dictionary<int, int> AttributesGrup { get; set; }
+        public Dictionary<string, List<string>> AttributesShared { get; set; }
+        public Dictionary<int, int> AttributesUnique { get; set; }
         public List<int> CompanyCategoryIds { get; set; } = new List<int>();
     }
 }

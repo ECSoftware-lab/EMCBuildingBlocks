@@ -231,6 +231,67 @@ namespace EMC.BuildingBlocks.Exceptions
 
 
     }
+    public class ProductDomainException : Exception, ICommonResponse
+    {
+        public HttpStatusCode Status { get; set; }
+        public List<ApiError> Errors { get; set; }
+        public bool IsSuccess => false;
+        public string Message { get; set; }
+        public List<string> Remarks { get; set; }
+        public DateTime Timestamp { get; set; }
+        public object Response { get; set; } = null; 
+        public ProductDomainException(ILogger logger, string message, List<ApiError> errors, int level) : base(message)
+        {
+            Status = HttpStatusCode.BadRequest;
+            Timestamp = DateTime.UtcNow;
+            Message = message;
+            Errors = errors ?? new List<ApiError>();
+            Remarks = new List<string>();
+            if (Status == HttpStatusCode.BadRequest)
+            {
+                if (Errors != null && Errors.Count > 0 && level > 0)
+                {
+                    foreach (var error in Errors)
+                    {
+                        EventId eventId = ApiError.GetError(error.Code, error.Message);
+                        switch (level)
+                        {
+                            case 6:
+                                logger.LogCritical(eventId, message);
+                                break;
+
+                            case 5:
+                                logger.LogError(eventId, message);
+                                break;
+
+                            case 4:
+                                logger.LogWarning(eventId, message);
+                                break;
+
+                            default:
+                                // Manejo para niveles no contemplados (opcional)
+                                logger.LogInformation(eventId, $"Unhandled level: {level}, {message}");
+                                break;
+                        }
+                    }
+
+
+                }
+            }
+
+
+
+        }
+        public ProductDomainException(string message) : base(message)
+        {
+            Status = HttpStatusCode.BadRequest;
+            Timestamp = DateTime.UtcNow;
+            Message = message;
+            Errors = new List<ApiError>();
+            Remarks = new List<string>();
+        }
+
+    }
 
 
 }

@@ -40,24 +40,6 @@ namespace EMC.BuildingBlocks.DependencyInjection
             }
            
 
-            // services.AddDbContextFactory<TContext>(options =>
-            //options.UseNpgsql(config.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped
-            // );
-
-
-            //Log.Logger = new LoggerConfiguration()
-            //    .MinimumLevel.Information()
-            //    .WriteTo.Debug()
-            //    .WriteTo.Console()
-            //    .WriteTo.File(path: $"{fileName}-.text",
-            //    restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information,
-            //    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.ff zzz} [{Level:u3}] {message:lj}{NewLine}{Exception}",
-            //    rollingInterval: RollingInterval.Day)
-            //    .CreateLogger();
-
-            //var autenthentication = config.GetValue<string>("Authentication:jwtKey");
-            //if (!string.IsNullOrWhiteSpace(autenthentication))
-            //    services.AddJWTAuthenticationScheme(config);
 
             services.AddRedisInyection(config);
 
@@ -93,3 +75,22 @@ namespace EMC.BuildingBlocks.DependencyInjection
         }
     }
 }
+
+// services.AddDbContextFactory<TContext>(options =>
+//options.UseNpgsql(config.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped
+// );
+
+
+//Log.Logger = new LoggerConfiguration()
+//    .MinimumLevel.Information()
+//    .WriteTo.Debug()
+//    .WriteTo.Console()
+//    .WriteTo.File(path: $"{fileName}-.text",
+//    restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information,
+//    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.ff zzz} [{Level:u3}] {message:lj}{NewLine}{Exception}",
+//    rollingInterval: RollingInterval.Day)
+//    .CreateLogger();
+
+//var autenthentication = config.GetValue<string>("Authentication:jwtKey");
+//if (!string.IsNullOrWhiteSpace(autenthentication))
+//    services.AddJWTAuthenticationScheme(config);
