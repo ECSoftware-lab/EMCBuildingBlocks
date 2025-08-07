@@ -33,4 +33,4 @@ git branch -r
   dotnet ef migrations add InitialCreate --project EMC.Infrastructure --startup-project WebApi --context EmcDbContext -v
 
 
-  
+  dotnet ef migrations add PhrasesMigration --project ../ProductApi.Infrastructure --startup-project . --context ProductDbContext
