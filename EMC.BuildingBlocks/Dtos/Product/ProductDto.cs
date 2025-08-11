@@ -16,7 +16,7 @@ public class ProductDto
     [JsonProperty(Order = 5)]
     public List<AttributeOtherDto>? OtherAttributes { get; set; }
     [JsonProperty(Order = 6)]
-    public string CodBarra { get; set; }
+    public string BarCode { get; set; }
     [JsonProperty(Order = 7)]
     public bool LookAtSales { get; set; }
 

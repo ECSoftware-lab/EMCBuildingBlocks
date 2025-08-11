@@ -5,7 +5,7 @@
         public Guid ProductId { get; set; }
         public Guid CompanyId { get; set; }
         public bool Status { get; set; }
-        public string? CodBarra { get; set; }
+        public string? BarCode { get; set; }
         public bool LookAtSales { get; set; }
         public bool Integrity { get; set; }
         public bool ArticleHeader { get; set; }

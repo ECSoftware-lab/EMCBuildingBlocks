@@ -2,6 +2,8 @@
 {
     public record BasePaginationRequest
     {
+        public string? TextFilter { get; set; }
+        public bool? Status { get; set; }
         public int CurrentPage { get; set; } = 1;
         public int PageSize { get; set; } = 10;
         public string? Sort { get; set; } = "Id"; // Default sort
