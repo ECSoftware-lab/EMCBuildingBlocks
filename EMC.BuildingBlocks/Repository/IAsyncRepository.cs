@@ -13,7 +13,7 @@ namespace EMC.BuildingBlocks.Repository
                                         List<Expression<Func<T, object>>> includes = null,
                                         bool disableTracking = true);     
         Task<T> AddAsync(T entity);
-        Task<T> UpdateAsync(T entity);
+        Task<bool> UpdateAsync(T entity);
         Task DeleteAsync(T entity);
         Task<IQueryable<T>> GetAllFilt(Expression<Func<T, bool>> filter = null);
         Task<T> AddAsyncCustom(T entity);

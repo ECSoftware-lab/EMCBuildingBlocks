@@ -19,9 +19,9 @@
             public const int UncreatedResource = 100040;
             public const int LoguinError = 100041;
             public const int CriticanlError = 100042;
-            public const int NotFount = 100043;
+            public const int NotFound = 100043;
             public const int UserNotConfirm = 100044;
-            public const int FieldMissing = 100045;
+            public const int FieldMissing = 100045;  
         };
 
         public static List<ApiError> Messages = new List<ApiError>
@@ -34,7 +34,7 @@
             new ApiError{ Code = Codes.UncreatedResource, Message = "El recurso no se creo. recurso en cuestion: " },
             new ApiError{ Code = Codes.LoguinError, Message = "No pudo acceder: " },
             new ApiError{ Code = Codes.CriticanlError, Message = "Error Critico: " },
-            new ApiError{ Code = Codes.NotFount, Message = "Recurso no encontrado: " },
+            new ApiError{ Code = Codes.NotFound, Message = "Recurso no encontrado: " },
             new ApiError{ Code = Codes.UserNotConfirm, Message = "Email de usuario no confirmado: " }
         };
     }
