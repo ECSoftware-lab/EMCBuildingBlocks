@@ -33,7 +33,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
                     options.UseNpgsql(connectionString);
                     options.EnableSensitiveDataLogging();
                     options.LogTo(Console.WriteLine, LogLevel.Information);
-                }); //, ServiceLifetime.Transient
+                }); 
 
 
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

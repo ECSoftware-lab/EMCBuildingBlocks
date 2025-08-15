@@ -1,4 +1,5 @@
 ﻿using EMC.BuildingBlocks.Application.Pagination;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace EMC.BuildingBlocks.Repository
@@ -12,17 +13,16 @@ namespace EMC.BuildingBlocks.Repository
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                         List<Expression<Func<T, object>>> includes = null,
                                         bool disableTracking = true);     
-        Task<T> AddAsync(T entity);
+        Task<T> AddAsync(T entity); 
+        Task<T> AddAsync(T entity, DbContext context);
         Task<bool> UpdateAsync(T entity);
         Task DeleteAsync(T entity);
         Task<IQueryable<T>> GetAllFilt(Expression<Func<T, bool>> filter = null);
-        Task<T> AddAsyncCustom(T entity);
-
+     
         Task<T> GetFirstOrDefaultAsync(
         Expression<Func<T, bool>> predicate = null,
         List<Expression<Func<T, object>>> includes = null,
         bool disableTracking = true);
-
-      
+       
     }
 }
