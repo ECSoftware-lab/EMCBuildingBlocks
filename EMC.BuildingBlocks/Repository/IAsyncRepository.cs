@@ -23,6 +23,7 @@ namespace EMC.BuildingBlocks.Repository
         Expression<Func<T, bool>> predicate = null,
         List<Expression<Func<T, object>>> includes = null,
         bool disableTracking = true);
-       
+        Task UpdateAsync(T entity, DbContext context);
+        Task DeleteAsync(T entity, DbContext context);
     }
 }
