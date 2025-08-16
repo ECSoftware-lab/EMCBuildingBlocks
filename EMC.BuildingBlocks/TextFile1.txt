@@ -34,3 +34,4 @@ git branch -r
 
 
   dotnet ef migrations add PhrasesMigration --project ../ProductApi.Infrastructure --startup-project . --context ProductDbContext
+  ls -la */
