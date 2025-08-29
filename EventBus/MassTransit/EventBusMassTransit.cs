@@ -16,4 +16,11 @@ namespace EMC.BuildingBlocks.EventBus.MassTransit
             await _publishEndpoint.Publish(@event);
         }
     }
+
+
+    public sealed class NoOpEventBus : IEventBus
+    {
+        public Task PublishAsync<T>(T @event) where T : IntegrationEvent
+            => Task.CompletedTask; // no hace nada
+    }
 }

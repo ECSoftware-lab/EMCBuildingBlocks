@@ -17,13 +17,20 @@ namespace EMC.BuildingBlocks.DependencyInjection
         public static IServiceCollection AddSharedServices<TContext>(this IServiceCollection services, IConfiguration config
             , string fileName, bool relationalBD = true) where TContext : DbContext
         {
+            //TODO resolver
+            //Console.WriteLine("Fuentes de configuración cargadas:");
+            //foreach (var source in config.AsEnumerable())
+            //{
+            //    Console.WriteLine($"Clave: {source.Key}, Valor: {source.Value}");
+            //}
+
             services.AddScoped<ICompanyExecutionContext, CompanyExecutionContext>();
             services.AddScoped<IAddressAppBuilder, AddressAppBuilder>();
             
             if (relationalBD)
             {
                 var connectionString = config.GetConnectionString("DefaultConnection");
-
+               
                 if (string.IsNullOrWhiteSpace(connectionString))
                 {
                     throw new InvalidOperationException("No se encontró la cadena de conexión 'DefaultConnection'. Verificá el appsettings.json del proyecto ProductApi.Presentation");
@@ -31,7 +38,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
                 services.AddDbContextFactory<TContext>(options =>
                 {
                     options.UseNpgsql(connectionString);
-                    options.EnableSensitiveDataLogging();
+                    options.EnableSensitiveDataLogging(false);
                     options.LogTo(Console.WriteLine, LogLevel.Information);
                 }); 
 
@@ -75,22 +82,4 @@ namespace EMC.BuildingBlocks.DependencyInjection
         }
     }
 }
-
-// services.AddDbContextFactory<TContext>(options =>
-//options.UseNpgsql(config.GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped
-// );
-
-
-//Log.Logger = new LoggerConfiguration()
-//    .MinimumLevel.Information()
-//    .WriteTo.Debug()
-//    .WriteTo.Console()
-//    .WriteTo.File(path: $"{fileName}-.text",
-//    restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information,
-//    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.ff zzz} [{Level:u3}] {message:lj}{NewLine}{Exception}",
-//    rollingInterval: RollingInterval.Day)
-//    .CreateLogger();
-
-//var autenthentication = config.GetValue<string>("Authentication:jwtKey");
-//if (!string.IsNullOrWhiteSpace(autenthentication))
-//    services.AddJWTAuthenticationScheme(config);
+ 
