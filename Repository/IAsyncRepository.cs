@@ -12,18 +12,24 @@ namespace EMC.BuildingBlocks.Repository
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                         List<Expression<Func<T, object>>> includes = null,
-                                        bool disableTracking = true);     
+                                        bool disableTracking = true);
+        #region AddAsync
         Task<T> AddAsync(T entity); 
-        Task<T> AddAsync(T entity, DbContext context);
+        Task<T> AddAsync(DbContext context,T entity);
+        #endregion
+        #region update
         Task<bool> UpdateAsync(T entity);
+        Task UpdateAsync(DbContext context, T entity);
+        #endregion
+
         Task DeleteAsync(T entity);
-        Task<IQueryable<T>> GetAllFilt(Expression<Func<T, bool>> filter = null);
+        Task<List<T>> GetAllFilt(Expression<Func<T, bool>> filter = null);
      
         Task<T> GetFirstOrDefaultAsync(
         Expression<Func<T, bool>> predicate = null,
         List<Expression<Func<T, object>>> includes = null,
         bool disableTracking = true);
-        Task UpdateAsync(T entity, DbContext context);
+       
         Task DeleteAsync(T entity, DbContext context);
     }
 }
