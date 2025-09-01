@@ -1,6 +1,6 @@
 ﻿namespace EMC.BuildingBlocks.Application
 {
-
+    //PRUEBA
     public static class ErrorCodes
     {
         public static ApiError GetCode(int code)
