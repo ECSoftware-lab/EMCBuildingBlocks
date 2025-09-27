@@ -66,7 +66,7 @@ namespace EMC.BuildingBlocks.Static
             public const int Cliente = 2;
             public const int Proveedor = 3;
             public const int Contador = 4;
-            public const int Visitante = 5;
+            public const int Visitante = 8;
         }
 
         public static Dictionary<int, string> PersonTypeList = new Dictionary<int, string>

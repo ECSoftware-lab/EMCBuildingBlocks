@@ -7,11 +7,11 @@ Remove-Migration -Project ProductApi.Infrastructure -StartupProject ProductApi.P
 
 
 
-Add-Migration InitialCreate -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
-Add-Migration RefactorPersonType -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
+Add-Migration InitialCreate -Project EMC.Infrastructure -StartupProject EMC.Presentation -Context EmcDbContext
+Add-Migration RefactorPersonType -Project EMC.Infrastructure -StartupProject EMC.Presentation -Context EmcDbContext
 
-Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext
-Update-Database -Project EMC.Infrastructure -StartupProject WebApi -Context EmcDbContext -Connection
+Update-Database -Project EMC.Infrastructure -StartupProject EMC.Presentation -Context EmcDbContext
+Update-Database -Project EMC.Infrastructure -StartupProject EMC.Presentation -Context EmcDbContext -Connection
 
 git submodule add https://github.com/ECSoftware-lab/EMCBuildingBlocks.git \external\EMCBuildingBlocks
 git submodule add https://github.com/ECSoftware-lab/EMC.ReadModel.git external\EMC.ReadModel
