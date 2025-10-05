@@ -15,7 +15,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
     public static class SharedServiceContainer
     {
         public static IServiceCollection AddSharedServices<TContext>(this IServiceCollection services, IConfiguration config
-            , string fileName, bool relationalBD = true) where TContext : DbContext
+            , string fileName, bool relationalBD = true,string strConextion = "DefaultConnection") where TContext : DbContext
         {
             //TODO resolver
             //Console.WriteLine("Fuentes de configuración cargadas:");
@@ -29,7 +29,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
             
             if (relationalBD)
             {
-                var connectionString = config.GetConnectionString("DefaultConnection");
+                var connectionString = config.GetConnectionString(strConextion);
                
                 if (string.IsNullOrWhiteSpace(connectionString))
                 {
