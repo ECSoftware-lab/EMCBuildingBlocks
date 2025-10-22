@@ -1,5 +1,6 @@
 ﻿using EMC.BuildingBlocks.Application.AppBuilders;
 using EMC.BuildingBlocks.Context;
+using EMC.BuildingBlocks.Exceptions;
 using EMC.BuildingBlocks.Interfaces;
 using EMC.BuildingBlocks.Middleware;
 using FluentValidation;
@@ -7,8 +8,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace EMC.BuildingBlocks.DependencyInjection
 {
@@ -55,10 +56,8 @@ namespace EMC.BuildingBlocks.DependencyInjection
 
         public static IApplicationBuilder UseSharedPolicies(this IApplicationBuilder app)
         {
-
-           // app.UseMiddleware<CompanyContextMiddleware>();
-
             app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             return app;
         }
 
