@@ -8,6 +8,12 @@ namespace EMC.BuildingBlocks.Cache
     {
         private readonly IConnectionMultiplexer _redisConnection;
         private readonly IDatabase _db;
+        private static readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,  
+            NullValueHandling = NullValueHandling.Ignore,
+            ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
+        };
         public RedisCacheRepository(IConnectionMultiplexer redis)
         {
             _redisConnection = redis;
@@ -17,13 +23,13 @@ namespace EMC.BuildingBlocks.Cache
         {
             var json = await _db.StringGetAsync(key);
             if (json.IsNullOrEmpty) return default;
-            return JsonConvert.DeserializeObject<T>(json);
+            return JsonConvert.DeserializeObject<T>(json, _jsonSettings);
         }
 
         public async Task<List<T>?> GetList<T>(string key)
         {
             var value = await _db.StringGetAsync(key);
-            return value.HasValue ? JsonConvert.DeserializeObject<List<T>>(value) : default;
+            return value.HasValue ? JsonConvert.DeserializeObject<List<T>>(value, _jsonSettings) : default;
         }
 
         public Task<bool> IsConnectedAsync()
@@ -38,7 +44,7 @@ namespace EMC.BuildingBlocks.Cache
 
         public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null)
         {
-            var json = JsonConvert.SerializeObject(value);
+            var json = JsonConvert.SerializeObject(value, _jsonSettings);
             await _db.StringSetAsync(key, json, expiry);
         }
 
@@ -46,7 +52,7 @@ namespace EMC.BuildingBlocks.Cache
         {
             if (_redisConnection == null || !await IsConnectedAsync())
                 return;
-            var json = JsonConvert.SerializeObject(list);
+            var json = JsonConvert.SerializeObject(list, _jsonSettings);
             await _db.StringSetAsync(keyName, json, expiry);
         }
 

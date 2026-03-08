@@ -1,6 +1,10 @@
 ﻿namespace EMC.BuildingBlocks.EventBus.MassTransit
 {
-    internal class RabbitMqSettings
+    public class RabbitMqSettings
     {
+        public string Host { get; set; }
+        public string VHost { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }
