@@ -1,6 +1,5 @@
 ﻿using EMC.BuildingBlocks.Cache;
 using EMC.BuildingBlocks.Context;
-using EMC.BuildingBlocks.Exceptions;
 using EMC.BuildingBlocks.Static.Extensions;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;

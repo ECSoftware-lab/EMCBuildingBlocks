@@ -8,7 +8,7 @@
 
   <ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="14.0.0" />
-    <PackageReference Include="FluentValidation" Version="11.11.0" />
+  
     <PackageReference Include="Google.Protobuf" Version="3.30.2" />
     <PackageReference Include="Grpc.Core" Version="2.46.6" />
     <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
@@ -44,6 +44,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Protobuf Include="gRPC\Protos\address.proto" GrpcServices="Client" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Exceptions\" />
 	</ItemGroup>
 
 </Project>
