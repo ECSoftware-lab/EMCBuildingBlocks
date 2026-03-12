@@ -6,7 +6,6 @@ Update-Database -Project ProductApi.Infrastructure -StartupProject ProductApi.Pr
 Remove-Migration -Project ProductApi.Infrastructure -StartupProject ProductApi.Presentation -Context ProductDbContext
 
 
-
 Add-Migration InitialCreate -Project EMC.Infrastructure -StartupProject EMC.Presentation -Context EmcDbContext
 Add-Migration RefactorPersonType -Project EMC.Infrastructure -StartupProject EMC.Presentation -Context EmcDbContext
 

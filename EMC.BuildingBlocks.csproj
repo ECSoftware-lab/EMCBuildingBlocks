@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <None Remove="Exceptions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="14.0.0" />
   
     <PackageReference Include="Google.Protobuf" Version="3.30.2" />
@@ -44,9 +50,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Protobuf Include="gRPC\Protos\address.proto" GrpcServices="Client" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Exceptions\" />
 	</ItemGroup>
 
 </Project>
