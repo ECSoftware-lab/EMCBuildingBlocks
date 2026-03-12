@@ -71,11 +71,11 @@ namespace EMC.BuildingBlocks.Static
 
         public static Dictionary<int, string> PersonTypeList = new Dictionary<int, string>
             {
-        { PersonTypeConst.Cliente, "Cliente" },
-        { PersonTypeConst.Empleado, "Empleado" },
-        { PersonTypeConst.Proveedor, "Proveedor" },
-        { PersonTypeConst.Contador, "Contador" },
-        { PersonTypeConst.Visitante, "Visitante" }
+        { PersonTypeConst.Cliente, "CLIENTE" },
+        { PersonTypeConst.Empleado, "EMPLEADO" },
+        { PersonTypeConst.Proveedor, "PROVEEDOR" },
+        { PersonTypeConst.Contador, "CONTADOR" },
+        { PersonTypeConst.Visitante, "VISITANTE" }
          };
 
         // public static List<ProductAtributeTypeDTO> ProductAtributeTypeList = new List<ProductAtributeTypeDTO>
