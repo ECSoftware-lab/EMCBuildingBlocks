@@ -2,10 +2,12 @@
 {
     public class BaseDto
     { 
-        public int CreateBy { get; set; }
-        public DateTime CreateDate { get; set; } 
-        public int? ModifieBy { get; set; }
-        public DateTime? ModifieDate { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime CreatedAt { get; set; }
+        
+        public int? ModifiedBy { get; set; }
+        public DateTime? ModifiedAt { get; set; }
+        public bool Status { get; set; }
         public int? DeleteBy { get; set; }
     }
 }
