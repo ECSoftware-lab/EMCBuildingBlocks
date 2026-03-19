@@ -8,18 +8,19 @@ namespace EMC.BuildingBlocks.Errors
         public T? Value { get; }
 
         public List<ErrorResult> Errors { get; }
+        public List<string> Remarks { get; }
 
-        private Result(bool success, T? value, List<ErrorResult>? errors)
+        private Result(bool success, T? value, List<ErrorResult>? errors, List<string>? remarks = null)
         {
             IsSuccess = success;
             Value = value;
             Errors = errors ?? new List<ErrorResult>();
+            Remarks = remarks ?? new List<string>();
         }
 
-        public static Result<T> Success(T value)
-        {
-            return new Result<T>(true, value, null);
-        }
+        public static Result<T> Success(T value, List<string>? remarks = null)
+                                => new Result<T>(true, value, null, remarks);
+
 
         public static Result<T> Failure(List<ErrorResult> errors)
         {
@@ -84,7 +85,7 @@ namespace EMC.BuildingBlocks.Errors
                 Code = code,
                 Message = message
             };
-        } 
+        }
     }
 
 }
