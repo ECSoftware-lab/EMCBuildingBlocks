@@ -6,7 +6,7 @@ namespace EMC.BuildingBlocks.Repository
 {
     public interface IAsyncRepository<T,TId> where T : class, IEntityWithId<TId>
     {
-        Task<T> GetByIdAsync(TId id, bool disableTracking = true);
+        Task<T> GetByIdAsync(TId id, bool disableTracking = true, CancellationToken ct = default);
         Task<IReadOnlyList<T>> GetAllAsync(bool disableTracking = true);
         Task<PaginatedResult<T>> ToPaginatedResultAsync(IQueryable<T> query, BasePaginationRequest request, string observation = null, CancellationToken cancellationToken = default);
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
@@ -28,7 +28,7 @@ namespace EMC.BuildingBlocks.Repository
         Task<T> GetFirstOrDefaultAsync(
         Expression<Func<T, bool>> predicate = null,
         List<Expression<Func<T, object>>> includes = null,
-        bool disableTracking = true);
+        bool disableTracking = true, CancellationToken ct = default);
        
         Task DeleteAsync(T entity, DbContext context);
     }

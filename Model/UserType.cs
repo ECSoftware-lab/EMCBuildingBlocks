@@ -14,6 +14,18 @@ public enum UserType
 }
 public static class UserTypeList
 {
+    // ROOT(0) puede editar a todos los demás
+    // ADMIN_T2(1) puede editar desde ADMIN_T1(2) para abajo
+    public static bool CanEdit(this UserType editor, UserType target)
+        => (int)editor < (int)target;
+
+    public static bool CanEdit(this UserType editor, string targetRoleName)
+    {
+        var targetValue = UserTypeList.GetNumericValue(targetRoleName);
+        if (targetValue == null) return false;
+        return (int)editor < targetValue.Value;
+    }
+
     public static readonly List<(string Name, int Value)> Types = Enum.GetValues(typeof(UserType))
         .Cast<UserType>()
         .Select(x => (x.ToString(), (int)x))
