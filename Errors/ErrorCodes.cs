@@ -30,6 +30,7 @@
             public const int UserNotConfirm = 100044;
             public const int FieldMissing = 100045;
             public const int UnupdatedResource = 100046;
+            public const int Unauthorized = 100047;
         }
 
         public static readonly List<ErrorDefinition> Messages =
@@ -45,7 +46,8 @@
         new() { Code = Codes.CriticanlError, Message = "Error crítico." },
         new() { Code = Codes.NotFound, Message = "Recurso no encontrado." },
         new() { Code = Codes.UserNotConfirm, Message = "Email de usuario no confirmado." },
-            new () { Code = Codes.UnupdatedResource, Message = "El recurso no se actualizó." }
+            new () { Code = Codes.UnupdatedResource, Message = "El recurso no se actualizó." },
+            new () { Code = Codes.Unauthorized, Message = "No autorizado." }
         ];
     }
 
