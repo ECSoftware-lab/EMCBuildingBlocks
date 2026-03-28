@@ -45,15 +45,29 @@ namespace EMC.BuildingBlocks.Cache
         public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null)
         {
             var json = JsonConvert.SerializeObject(value, _jsonSettings);
-            await _db.StringSetAsync(key, json, expiry);
-        }
 
+            await _db.StringSetAsync(
+                key,
+                json,
+                expiry,
+                When.Always,
+                CommandFlags.None
+            );
+        }
         public async Task SetList<T>(string keyName, List<T> list, TimeSpan? expiry = null)
         {
             if (_redisConnection == null || !await IsConnectedAsync())
                 return;
+
             var json = JsonConvert.SerializeObject(list, _jsonSettings);
-            await _db.StringSetAsync(keyName, json, expiry);
+
+            await _db.StringSetAsync(
+                keyName,
+                json,
+                expiry,
+                When.Always,
+                CommandFlags.None
+            );
         }
 
 
