@@ -11,16 +11,10 @@
 
         public List<string>? CategoryNames { get; set; } = new List<string>();
         public Dictionary<string, List<string>>? AttributeShareds { get; set; } = new Dictionary<string, List<string>>();
-
-
-        //propios del filtro 
+         
         public int FilterType { get; init; }
         public string? TextFilter { get; init; }
-
-        //para respuesta no los mapea no necesito esto aqui  CategoriInclud AttributesGrupInclud AtributSharedInclud
-
-
-        // Paginación y orden ya estan en        BasePaginationRequest
+         
 
     }
     public record AttributesForFilterDto

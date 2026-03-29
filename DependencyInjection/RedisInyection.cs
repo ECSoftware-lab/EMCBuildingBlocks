@@ -13,8 +13,6 @@ namespace EMC.BuildingBlocks.DependencyInjection
             var redisConn = config.GetValue<string>("Redis:ConnectionString");
 
 
-           // var prueba = config.GetValue<string>("MongoDbSettings:ConnectionString");
-
             if (!string.IsNullOrEmpty(redisConn))
             {
                 services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConn!));
