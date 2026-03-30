@@ -14,7 +14,7 @@ namespace EMC.BuildingBlocks.Repository
                                         List<Expression<Func<T, object>>> includes = null,
                                         bool disableTracking = true);
         #region AddAsync
-        Task<T> AddAsync(T entity); 
+        Task<T> AddAsync(T entity, CancellationToken ct = default); 
         Task<T> AddAsync(DbContext context,T entity);
         #endregion
         #region update
