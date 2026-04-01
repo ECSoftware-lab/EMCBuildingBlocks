@@ -11,6 +11,7 @@
         int? ActiveSubsidiaryId { get; }
         Dictionary<string, string> Configurations { get; set; }
         int KindId {  get; }
+        Dictionary<int, bool>? ConfigPersonType { get;  set; }
     }
 
 }
