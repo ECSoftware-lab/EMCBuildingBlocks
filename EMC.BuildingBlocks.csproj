@@ -51,6 +51,11 @@
 	<ItemGroup>
 		<None Include="gRPC\Protos\address.proto" />
 	</ItemGroup>
+
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\EMC.ErrorHandling\EMC.ErrorHandling.csproj" />
+	</ItemGroup>
 	<ItemGroup>
 		<Protobuf Include="gRPC\Protos\address.proto" GrpcServices="Client" />
 	</ItemGroup>
