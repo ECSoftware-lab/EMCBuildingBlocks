@@ -53,9 +53,18 @@ namespace EMC.BuildingBlocks.Middleware
                     ctx.UserName = context.User.FindFirst(ClaimTypes.Email)?.Value;
                     ctx.UserId = context.User.GetUserId() ?? Guid.Empty;
                     ctx.Roles = context.User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
-                    ctx.Claims = context.User.Claims
-                        .GroupBy(c => c.Type)
-                        .ToDictionary(g => g.Key, g => g.First().Value);
+                    ctx.Claims = context.User.Claims.GroupBy(c => c.Type).ToDictionary(g => g.Key, g => g.First().Value);
+
+                    var NEmployeFromToken = context.User.FindFirst("NEmploye")?.Value;
+
+                    if (!int.TryParse(NEmployeFromToken, out var NEmploye ))
+                    {
+                        context.Response.StatusCode = 403;
+                        await context.Response.WriteAsync("Token no contiene NEmploye válido");
+                        return;
+                    }
+                    ctx.KindId = NEmploye;
+
                 }
 
                 // ✅ Siempre buscar config, incluso si es request anónima (si querés evitarlo, podés poner otra condición)

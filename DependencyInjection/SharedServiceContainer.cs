@@ -32,13 +32,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
         public static IServiceCollection AddSharedServices<TContext>(this IServiceCollection services, IConfiguration config
             , string fileName, bool relationalBD = true, string strConextion = "DefaultConnection") where TContext : DbContext
         {
-            //TODO resolver
-            //Console.WriteLine("Fuentes de configuración cargadas:");
-            //foreach (var source in config.AsEnumerable())
-            //{
-            //    Console.WriteLine($"Clave: {source.Key}, Valor: {source.Value}");
-            //}
-
+            
             services.AddScoped<ICompanyExecutionContext, CompanyExecutionContext>();
             services.AddScoped<IAddressAppBuilder, AddressAppBuilder>();
 
@@ -61,6 +55,12 @@ namespace EMC.BuildingBlocks.DependencyInjection
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             }
 
+            //TODO resolver
+            Console.WriteLine("Fuentes de configuración cargadas:");
+            foreach (var source in config.AsEnumerable())
+            {
+                Console.WriteLine($"Clave: {source.Key}, Valor: {source.Value}");
+            }
 
 
             services.AddRedisInyection(config);

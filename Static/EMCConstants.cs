@@ -66,11 +66,12 @@ namespace EMC.BuildingBlocks.Static
 
         public class PersonTypeConst
         {
-            public const int Empleado = 1;
-            public const int Cliente = 2;
-            public const int Proveedor = 3;
-            public const int Contador = 4;
-            public const int Visitante = 8;
+            public const int Visitante = 1;
+            public const int Root = 2;
+            public const int Empleado = 3;
+            public const int Cliente = 4;
+            public const int Paciente = 8;
+            public const int Contador = 9; public const int Proveedor = 10;
         }
 
         public static Dictionary<int, string> PersonTypeList = new Dictionary<int, string>
@@ -79,9 +80,11 @@ namespace EMC.BuildingBlocks.Static
         { PersonTypeConst.Empleado, "EMPLEADO" },
         { PersonTypeConst.Proveedor, "PROVEEDOR" },
         { PersonTypeConst.Contador, "CONTADOR" },
-        { PersonTypeConst.Visitante, "VISITANTE" }
+        { PersonTypeConst.Visitante, "VISITANTE" },
+        { PersonTypeConst.Root, "ROOT" },
+        { PersonTypeConst.Paciente, "PACIENTE" }
          };
-
+       
         // public static List<ProductAtributeTypeDTO> ProductAtributeTypeList = new List<ProductAtributeTypeDTO>
 
 
