@@ -12,7 +12,7 @@ namespace EMC.BuildingBlocks.Repository
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                         List<Expression<Func<T, object>>> includes = null,
-                                        bool disableTracking = true);
+                                        bool disableTracking = true, CancellationToken ct = default);
         #region AddAsync
         Task<T> AddAsync(T entity, CancellationToken ct = default); 
         Task<T> AddAsync(DbContext context,T entity);
