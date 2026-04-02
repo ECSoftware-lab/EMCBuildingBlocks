@@ -66,8 +66,9 @@ namespace EMC.BuildingBlocks.Middleware
                     await context.Response.WriteAsync("No se encontró configuración para la compañía en cache");
                     return;
                 }
-
                 ctx.Configurations = config;
+                var configPersonType = await configCacheService.GetCompanyConfigPersonTypeAsync(companyId);
+                ctx.ConfigPersonType = configPersonType;
             }
 
             await _next(context);

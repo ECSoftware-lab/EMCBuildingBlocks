@@ -36,3 +36,5 @@ git branch -r
   dotnet ef migrations add PhrasesMigration --project ../ProductApi.Infrastructure --startup-project . --context ProductDbContext
   ls -la */
   xvzxv
+
+  Add-Migration RolesTypPerson -Project EMC.Infrastructure -StartupProject EMC.Presentation -Context EmcDbContext

@@ -26,6 +26,24 @@
             return _cache.GetAsync<Dictionary<string, string>>(key);
         }
 
+        public Task SetCompanyConfigPersonTypeAsync(Guid companyId, Dictionary<int, bool> config)
+        {
+            var prefijo = "company:personType:";
+            var key = $"{prefijo}{companyId}";
+            return _cache.SetAsync(key, config);
+        }
+        public Task RemoveCompanyConfigPersonTypeAsync(Guid companyId)
+        {
+            var prefijo = "company:personType:";
+            var key = $"{prefijo}{companyId}";
+            return _cache.RemoveAsync(key);
+        }
+        public Task<Dictionary<int, bool>?> GetCompanyConfigPersonTypeAsync(Guid companyId)
+        {
+            var prefijo = "company:personType:";
+            var key = $"{prefijo}{companyId}";
+            return _cache.GetAsync<Dictionary<int, bool>>(key);
+        }
 
     }
 

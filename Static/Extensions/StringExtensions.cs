@@ -2,6 +2,12 @@
 {
     public static class StringExtensions
     {
+       
+            public static string RoleNormalizer(string role)
+            {
+                return role.Trim().ToUpperInvariant();
+            }
+        
         private static string Trim(string value)
         {
             return value.Trim();

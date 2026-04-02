@@ -21,8 +21,12 @@ namespace EMC.BuildingBlocks.Static
         { TypeFilterProd.NotSerchText, "" }
          };
 
-
-
+        public static class Roles
+        {
+            public const string ADMIN = "ADMIN";
+            public const string EMPLEADO = "EMPLEADO";
+            public const string CLIENTE = "CLIENTE";
+        }
 
         public static List<string> ExtensionsImagen = new List<string> { "jpg", "jpeg", "png", "gif", "bmp" };
 
