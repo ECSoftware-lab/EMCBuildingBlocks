@@ -6,6 +6,13 @@ namespace EMC.BuildingBlocks.Repository
 {
     public interface IAsyncRepository<T,TId> where T : class, IEntityWithId<TId>
     {
+        /// <summary>
+        ///         
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="disableTracking"></param>
+        /// <param name="ct"></param>
+        /// <returns></returns>
         Task<T> GetByIdAsync(TId id, bool disableTracking = true, CancellationToken ct = default);
         Task<IReadOnlyList<T>> GetAllAsync(bool disableTracking = true);
         Task<PaginatedResult<T>> ToPaginatedResultAsync(IQueryable<T> query, BasePaginationRequest request, string observation = null, CancellationToken cancellationToken = default);
