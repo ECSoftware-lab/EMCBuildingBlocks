@@ -60,6 +60,8 @@ namespace EMC.BuildingBlocks.Http
             HttpResponseMessage httpResponse;
             try
             {
+                var fullUrl = new Uri(client.BaseAddress!, endpoint).ToString();
+                var prueba= JsonSerializer.Serialize(body, JsonOptions);
                 httpResponse = await client.PostAsJsonAsync(endpoint, body, JsonOptions, ct);
             }
             catch (TaskCanceledException) when (!ct.IsCancellationRequested)
