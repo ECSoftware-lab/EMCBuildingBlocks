@@ -8,6 +8,6 @@
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public bool Status { get; set; }
-        public int? DeleteBy { get; set; }
+        
     }
 }
