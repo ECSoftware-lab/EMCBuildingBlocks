@@ -53,8 +53,9 @@ namespace EMC.BuildingBlocks.Middleware
                     ctx.UserName = context.User.FindFirst(ClaimTypes.Email)?.Value;
                     ctx.UserId = context.User.GetUserId() ?? Guid.Empty;
                     ctx.Roles = context.User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
-                    ctx.Claims = context.User.Claims.GroupBy(c => c.Type).ToDictionary(g => g.Key, g => g.First().Value);
+                    //ctx.Claims = context.User.Claims.GroupBy(c => c.Type).ToDictionary(g => g.Key, g => g.First().Value);
 
+                    ctx.Claims = NormalizeClaims(context.User.Claims);
                     var NEmployeFromToken = context.User.FindFirst("NEmploye")?.Value;
 
                     if (!int.TryParse(NEmployeFromToken, out var NEmploye ))
@@ -83,56 +84,30 @@ namespace EMC.BuildingBlocks.Middleware
             await _next(context);
         }
 
-        /*
-                public async Task Invoke(HttpContext context, ICompanyExecutionContext companyContext, ICompanyConfigurationCacheService ConfiCahe)
-                {
-                    Console.WriteLine("TOKEN: " + context.Request.Headers["Authorization"]);
+        private Dictionary<string, string> NormalizeClaims(IEnumerable<System.Security.Claims.Claim> claims)
+        {
+            var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var claim in claims)
+            {
+                // Si la clave es un URI, me quedo con el último segmento
+                var key = claim.Type.Contains('/')
+                    ? claim.Type.Split('/').Last()
+                    : claim.Type;
+
+                dict[key] = claim.Value;
+            }
+
+            return dict;
+        }
 
 
-                    if (companyContext is CompanyExecutionContext ctx)
-                    {
-                        var companyIdHeader = context.Request.Headers["X-CompanyId"].FirstOrDefault();
+        public static Guid GetNameIdentifier(IDictionary<string, string> claims)
+        {
+            var kv = claims.FirstOrDefault(c => c.Key.EndsWith("nameidentifier", StringComparison.OrdinalIgnoreCase));
+            return Guid.TryParse(kv.Value, out var id) ? id : Guid.Empty;
+        }
 
-                        if (!Guid.TryParse(companyIdHeader, out var companyId))
-                        {
-                            context.Response.StatusCode = 403;
-                            await context.Response.WriteAsync("User/Company invalid");
-                            return;
-                        }
-                        var tClaims = context.User.Claims;
-                        ctx.CompanyId = companyId;
-                        ctx.UserName = context.User.FindFirst(ClaimTypes.Email)?.Value;
-                        ctx.Roles = context.User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
-                        ctx.Claims = context.User.Claims
-                                    .GroupBy(c => c.Type)
-                                     .ToDictionary(g => g.Key, g => g.First().Value);
-
-                        var user = context.User;
-                        if (user != null && user.Identity.IsAuthenticated)
-                        {
-                            var userName = context.User.GetUserName();
-                            var userGuid = context.User.GetUserId();
-                            ctx.UserId = userGuid ?? Guid.Empty; 
-                        }
-
-                        var config = await ConfiCahe.GetCompanyConfigAsync(companyId);
-                        if (config == null)
-                        {
-                            context.Response.StatusCode = 503;
-                            await context.Response.WriteAsync("No se encontró configuración para la compañía en cache");
-                            return;
-                        }
-
-                        ctx.Configurations = config;
-
-                    }
-                    Console.WriteLine($"Middleware Instance: {companyContext.GetHashCode()}");
-
-                    await _next(context);
-
-                }
-
-                */
     }
 
 }
