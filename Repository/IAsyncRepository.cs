@@ -21,6 +21,7 @@ namespace EMC.BuildingBlocks.Repository
         Task<T> AddAsync(DbContext context,T entity);
         #endregion
         #region update
+
         Task<bool> UpdateAsync(T entity, CancellationToken ct = default);
         Task UpdateAsync(DbContext context, T entity);
         #endregion
