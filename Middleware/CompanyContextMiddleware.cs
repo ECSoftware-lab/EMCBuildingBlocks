@@ -3,6 +3,8 @@ using EMC.BuildingBlocks.Context;
 using EMC.BuildingBlocks.Static.Extensions;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using System.Text;
+using System.Text.Json;
 
 namespace EMC.BuildingBlocks.Middleware
 {
@@ -21,11 +23,9 @@ namespace EMC.BuildingBlocks.Middleware
             if (companyContext is CompanyExecutionContext ctx)
             {
                 var companyIdHeader = context.Request.Headers["X-CompanyId"].FirstOrDefault();
-
                 if (!Guid.TryParse(companyIdHeader, out var companyId))
                 {
-                    context.Response.StatusCode = 403;
-                    await context.Response.WriteAsync("Header X-CompanyId inválido");
+                    await EscribirErrorAsync(context, 403, "Header X-CompanyId inválido");
                     return;
                 }
 
@@ -33,57 +33,62 @@ namespace EMC.BuildingBlocks.Middleware
 
                 if (context.User.Identity?.IsAuthenticated == true)
                 {
-                    // ✅ Solo si está autenticado, validar el token
                     var companyIdFromToken = context.User.FindFirst("CompanyId")?.Value;
-
                     if (!Guid.TryParse(companyIdFromToken, out var companyIdFromTokenGuid))
                     {
-                        context.Response.StatusCode = 403;
-                        await context.Response.WriteAsync("Token no contiene CompanyId válido");
+                        await EscribirErrorAsync(context, 403, "Token no contiene CompanyId válido");
                         return;
                     }
 
                     if (companyId != companyIdFromTokenGuid)
                     {
-                        context.Response.StatusCode = 403;
-                        await context.Response.WriteAsync("Inconsistencia entre token y header");
+                        await EscribirErrorAsync(context, 403, "Inconsistencia entre token y header");
                         return;
                     }
 
                     ctx.UserName = context.User.FindFirst(ClaimTypes.Email)?.Value;
                     ctx.UserId = context.User.GetUserId() ?? Guid.Empty;
                     ctx.Roles = context.User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
-                    //ctx.Claims = context.User.Claims.GroupBy(c => c.Type).ToDictionary(g => g.Key, g => g.First().Value);
-
                     ctx.Claims = NormalizeClaims(context.User.Claims);
-                    var NEmployeFromToken = context.User.FindFirst("NEmploye")?.Value;
 
-                    if (!int.TryParse(NEmployeFromToken, out var NEmploye ))
+                    var nEmployeFromToken = context.User.FindFirst("NEmploye")?.Value;
+                    if (!int.TryParse(nEmployeFromToken, out var nEmploye))
                     {
-                        context.Response.StatusCode = 403;
-                        await context.Response.WriteAsync("Token no contiene NEmploye válido");
+                        await EscribirErrorAsync(context, 403, "Token no contiene NEmploye válido");
                         return;
                     }
-                    ctx.KindId = NEmploye;
 
+                    ctx.KindId = nEmploye;
                 }
 
-                // ✅ Siempre buscar config, incluso si es request anónima (si querés evitarlo, podés poner otra condición)
                 var config = await configCacheService.GetCompanyConfigAsync(companyId);
                 if (config == null)
                 {
-                    context.Response.StatusCode = 503;
-                    await context.Response.WriteAsync("No se encontró configuración para la compañía en cache");
+                    await EscribirErrorAsync(context, 503, "No se encontró configuración para la compañía en cache");
                     return;
                 }
+
                 ctx.Configurations = config;
-                var configPersonType = await configCacheService.GetCompanyConfigPersonTypeAsync(companyId);
-                ctx.ConfigPersonType = configPersonType;
+                ctx.ConfigPersonType = await configCacheService.GetCompanyConfigPersonTypeAsync(companyId);
             }
 
             await _next(context);
         }
 
+        // ── Helper privado ────────────────────────────────────────────────────────
+        private static async Task EscribirErrorAsync(HttpContext context, int statusCode, string mensaje)
+        {
+            context.Response.StatusCode = statusCode;
+            context.Response.ContentType = "application/json; charset=utf-8";
+
+            var body = JsonSerializer.Serialize(new
+            {
+                status = statusCode,
+                message = mensaje
+            });
+
+            await context.Response.WriteAsync(body, Encoding.UTF8);
+        }
         private Dictionary<string, string> NormalizeClaims(IEnumerable<System.Security.Claims.Claim> claims)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);

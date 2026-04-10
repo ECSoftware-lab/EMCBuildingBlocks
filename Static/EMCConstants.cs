@@ -1,10 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace EMC.BuildingBlocks.Static
+﻿namespace EMC.BuildingBlocks.Static
 {
     public class EMCConstants
     {
+        public class EventType
+        {
+            public const string SlotLiberado = "booking.slotliberadohoy";
+            public const string TurnoNoShow = "booking.turnonoshow";
+            public const string TurnoCreado = "booking.turnocreado";
+            public const string TurnoCancelado = "booking.turnocancelado"; 
+            public const string TurnoCompletado = "booking.turnocompletado";
+            public const string TurnoReprogramado = "booking.turnoreprogramado";
+            public const string PracticaIniciada = "booking.practicainiciada";
+            public const string OfertaSlot = "booking.ofertaslot";
+        }
+
+        public static readonly List<string> EventsList = new()
+    {
+        EventType.SlotLiberado,
+        EventType.TurnoNoShow,
+        EventType.TurnoCreado,
+        EventType.TurnoCancelado,
+        EventType.TurnoCompletado,
+        EventType.TurnoReprogramado,
+        EventType.OfertaSlot,
+        EventType.PracticaIniciada
+    };
         public class TypeFilterProd
         {
             public const int ContainedText = 1;
@@ -84,7 +104,7 @@ namespace EMC.BuildingBlocks.Static
         { PersonTypeConst.Root, "ROOT" },
         { PersonTypeConst.Paciente, "PACIENTE" }
          };
-       
+
         // public static List<ProductAtributeTypeDTO> ProductAtributeTypeList = new List<ProductAtributeTypeDTO>
 
 
