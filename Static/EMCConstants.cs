@@ -7,6 +7,7 @@
             public const string SlotLiberado = "booking.slotliberadohoy";
             public const string TurnoNoShow = "booking.turnonoshow";
             public const string TurnoCreado = "booking.turnocreado";
+            public const string TurnoConfirmado = "booking.turnoconfirmado";
             public const string TurnoCancelado = "booking.turnocancelado"; 
             public const string TurnoCompletado = "booking.turnocompletado";
             public const string TurnoReprogramado = "booking.turnoreprogramado";
@@ -19,6 +20,7 @@
         EventType.SlotLiberado,
         EventType.TurnoNoShow,
         EventType.TurnoCreado,
+        EventType.TurnoConfirmado,
         EventType.TurnoCancelado,
         EventType.TurnoCompletado,
         EventType.TurnoReprogramado,
