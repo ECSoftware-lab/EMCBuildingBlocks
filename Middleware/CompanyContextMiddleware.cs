@@ -59,6 +59,21 @@ namespace EMC.BuildingBlocks.Middleware
                     }
 
                     ctx.KindId = nEmploye;
+                    ctx.KindId= context.User.GetEmployeeNumber() ?? 0;
+                    ctx.ActiveSubsidiaryId = context.User.FindFirst("ActiveSubsidiaryId")?.Value switch
+                    {
+                        null => null,
+                        var val when int.TryParse(val, out var subId) => subId,
+                        _ => null
+                    };
+                    /*var claimValue = context.User.FindFirst("ActiveSubsidiaryId")?.Value;
+if (claimValue == null)
+    ctx.ActiveSubsidiaryId = null;
+else if (int.TryParse(claimValue, out var subId))
+    ctx.ActiveSubsidiaryId = subId;
+else
+    ctx.ActiveSubsidiaryId = null;
+*/
                 }
 
                 var config = await configCacheService.GetCompanyConfigAsync(companyId);
