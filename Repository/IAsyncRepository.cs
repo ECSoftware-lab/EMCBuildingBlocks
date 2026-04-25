@@ -10,6 +10,9 @@ namespace EMC.BuildingBlocks.Repository
         Task<T> GetByIdAsync(TId id, bool disTrk = true, CancellationToken ct = default);
         Task<T> GetFirstOrDefaultAsync( Expression<Func<T, bool>> predicate = null,
             List<Expression<Func<T, object>>> includes = null,bool disTrk = true, CancellationToken ct = default);
+
+        Task<T> GetFirstOrDefaultAsync(DbContext context, Expression<Func<T, bool>> predicate = null, 
+            List<Expression<Func<T, object>>> includes = null, bool disableTracking = true, CancellationToken ct = default);
         Task<IReadOnlyList<T>> GetAllAsync(bool disTrk = true);
         Task<PaginatedResult<T>> ToPaginatedResultAsync(IQueryable<T> query, BasePaginationRequest request, string observation = null, CancellationToken cancellationToken = default);
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
@@ -34,5 +37,6 @@ namespace EMC.BuildingBlocks.Repository
         
 
         Task<List<T>> GetAllFilt(Expression<Func<T, bool>> filter = null);
+       
     }
 }
