@@ -10,5 +10,10 @@
         public bool Status { get; set; }
         
     }
-
+    public enum ToggleResult
+    {
+        NotFound,
+        NoChange,
+        Updated
+    }
 }
