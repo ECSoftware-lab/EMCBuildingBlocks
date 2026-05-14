@@ -192,13 +192,13 @@ namespace EMC.BuildingBlocks.Http
                 throw new MsHttpException($"Respuesta vacía desde {endpoint}");
 
             // Error de negocio (MS devuelve 200 pero IsSuccess = false)
-            /*  if (!envelope.IsSuccess || !envelope.HasResponse)
+              if (!envelope.IsSuccess || !envelope.HasResponse)
               {
                   var errorMsg = envelope.Errors.FirstOrDefault()?.Message ?? envelope.Message;
                   _logger.LogWarning("[MsHttpClient] IsSuccess=false en {Endpoint}: {Error}",
                       endpoint, errorMsg);
-                  throw new MsHttpException(errorMsg, isBusinessError: true);
-              }*/
+                  throw new MsHttpException($"ErrorExterno {errorMsg}", isBusinessError: true);
+              }
 
             return envelope.Response!;
         }

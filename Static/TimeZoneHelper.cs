@@ -1,5 +1,8 @@
 ﻿namespace EMC.BuildingBlocks.Static
-{
+{   /// <summary>
+    /// MS-Usuarios guarda "Argentina" — EF/Npgsql necesita el IANA completo.
+    /// Expandí según los valores reales que uses.
+    /// </summary>
     public static class TimeZoneHelper
     {
         public static string NormalizarZonaHoraria(string? input)
