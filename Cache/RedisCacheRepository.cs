@@ -5,7 +5,7 @@ using IDatabase = StackExchange.Redis.IDatabase;
 namespace EMC.BuildingBlocks.Cache
 {
     public class RedisCacheRepository : IRedisCacheRepository
-    {
+    {//pppp
         private readonly IConnectionMultiplexer _redisConnection;
         private readonly IDatabase _db;
         private static readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
