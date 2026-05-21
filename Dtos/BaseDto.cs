@@ -16,4 +16,12 @@
         NoChange,
         Updated
     }
+    public enum ToggleOutcome
+    {
+        Error,
+        NoChange,
+        Activated,
+        Deactivated
+    }
+
 }

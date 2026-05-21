@@ -4,7 +4,10 @@ namespace EMC.BuildingBlocks.Static.Extensions
 {
     public static class StringExtensions
     {
-       
+        public static string NormalizeStr(string? value)
+        {
+            return (value ?? string.Empty).Trim();
+        }
         public static string RoleNormalizer(string role)
         {
             return role.Trim().ToUpperInvariant();
@@ -37,6 +40,6 @@ namespace EMC.BuildingBlocks.Static.Extensions
                 .Where(w => !string.IsNullOrWhiteSpace(w))
                 .Select(w => char.ToUpper(w[0]) + w.Substring(1).ToLower()));
         }
-
+       
     }
 }
