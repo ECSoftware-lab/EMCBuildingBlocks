@@ -29,9 +29,10 @@ namespace EMC.BuildingBlocks.Context
         {
             var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, "estetica-service"),
+            new Claim(ClaimTypes.NameIdentifier, "internal-service"),
             new Claim("CompanyId", companyId.ToString()),
             new Claim(ClaimTypes.Role, "InternalService"),
+            new Claim("NEmploye", "10")
         };
 
             var key = new SymmetricSecurityKey(
