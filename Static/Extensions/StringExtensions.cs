@@ -41,5 +41,6 @@ namespace EMC.BuildingBlocks.Static.Extensions
                 .Select(w => char.ToUpper(w[0]) + w.Substring(1).ToLower()));
         }
        
+
     }
 }

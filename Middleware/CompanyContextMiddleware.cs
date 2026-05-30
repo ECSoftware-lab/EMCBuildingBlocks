@@ -20,6 +20,12 @@ namespace EMC.BuildingBlocks.Middleware
 
         public async Task Invoke(HttpContext context, ICompanyExecutionContext companyContext, ICompanyConfigurationCacheService configCacheService)
         {
+            if (context.Request.Path.StartsWithSegments("/oauth/whatsapp/callback",
+        StringComparison.OrdinalIgnoreCase))
+            {
+                await _next(context);
+                return;
+            }
             if (companyContext is CompanyExecutionContext ctx)
             {
                 var companyIdHeader = context.Request.Headers["X-CompanyId"].FirstOrDefault();
