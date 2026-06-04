@@ -38,11 +38,11 @@ namespace EMC.BuildingBlocks.DependencyInjection
             }
 
             //TODO resolver
-            Console.WriteLine("Fuentes de configuración cargadas:");
-            foreach (var source in config.AsEnumerable())
-            {
-                Console.WriteLine($"Clave: {source.Key}, Valor: {source.Value}");
-            }
+            //Console.WriteLine("Fuentes de configuración cargadas:");
+            //foreach (var source in config.AsEnumerable())
+            //{
+            //    Console.WriteLine($"Clave: {source.Key}, Valor: {source.Value}");
+            //}
 
 
             services.AddRedisInyection(config);

@@ -25,6 +25,11 @@ namespace EMC.BuildingBlocks.Middleware
                  await _next(context);
                  return;
              }*/
+            //if (context.Request.Path.StartsWithSegments("/swagger"))
+            //{
+            //    await _next(context);
+            //    return;
+            //}
             var pathsPublicos = new[]
                             {
                                     "/oauth/whatsapp/callback",
