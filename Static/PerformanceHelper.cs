@@ -4,8 +4,8 @@ namespace EMC.BuildingBlocks.Static
 {
     public static class PerformanceHelper
     {
-     
-      
+
+
         public static async Task<(T result, long elapsedMilliseconds)> MeasureExecutionTimeAsync<T>(Func<Task<T>> action)
         {
             var stopwatch = Stopwatch.StartNew();

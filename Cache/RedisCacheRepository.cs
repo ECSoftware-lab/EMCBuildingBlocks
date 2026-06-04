@@ -10,7 +10,7 @@ namespace EMC.BuildingBlocks.Cache
         private readonly IDatabase _db;
         private static readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
         {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,  
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             NullValueHandling = NullValueHandling.Ignore,
             ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
         };

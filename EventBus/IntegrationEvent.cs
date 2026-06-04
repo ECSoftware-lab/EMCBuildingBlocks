@@ -6,10 +6,10 @@
         public DateTime OccurredOn { get; private set; }
         public Guid CompanyId { get; set; }
         protected IntegrationEvent()
-        { 
+        {
             IdEvent = Guid.NewGuid();
             OccurredOn = DateTime.UtcNow;
-        }       
-       
+        }
+
     }
 }

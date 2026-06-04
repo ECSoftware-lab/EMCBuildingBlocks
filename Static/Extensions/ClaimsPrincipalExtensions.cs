@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
 namespace EMC.BuildingBlocks.Static.Extensions
 {
@@ -14,11 +13,11 @@ namespace EMC.BuildingBlocks.Static.Extensions
             return Guid.TryParse(value, out var id) ? id : (Guid?)null;
         }
 
-        public static int?  GetEmployeeNumber(this ClaimsPrincipal user)
+        public static int? GetEmployeeNumber(this ClaimsPrincipal user)
         {
             var nEmployeFromToken = user.FindFirst("NEmploye")?.Value;
-           var n= int.TryParse(nEmployeFromToken, out var nEmploye)? nEmploye : (int?)null;
-             return n;
+            var n = int.TryParse(nEmployeFromToken, out var nEmploye) ? nEmploye : (int?)null;
+            return n;
         }
         public static IEnumerable<string> GetRoles(this ClaimsPrincipal user) =>
             user.FindAll(ClaimTypes.Role).Select(r => r.Value);

@@ -31,7 +31,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(key),
-            ClockSkew = TimeSpan.FromMinutes(2),
+            ClockSkew = TimeSpan.FromMinutes(5),
             ValidIssuer = issuer,
             ValidAudience = audience,
             RequireExpirationTime = true,

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EMC.BuildingBlocks.EventBus
+﻿namespace EMC.BuildingBlocks.EventBus
 {
     /// <summary>
     /// Envelope genérico para publicar cualquier evento del Outbox al bus.

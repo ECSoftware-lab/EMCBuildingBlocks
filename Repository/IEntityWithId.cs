@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EMC.BuildingBlocks.Repository
+﻿namespace EMC.BuildingBlocks.Repository
 {
     public interface IEntityWithId<T>
     {

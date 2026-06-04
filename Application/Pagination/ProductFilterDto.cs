@@ -11,10 +11,10 @@
 
         public List<string>? CategoryNames { get; set; } = new List<string>();
         public Dictionary<string, List<string>>? AttributeShareds { get; set; } = new Dictionary<string, List<string>>();
-         
+
         public int FilterType { get; init; }
         public string? TextFilter { get; init; }
-         
+
 
     }
     public record AttributesForFilterDto

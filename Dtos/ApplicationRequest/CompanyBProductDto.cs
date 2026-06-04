@@ -8,7 +8,7 @@ namespace EMC.BuildingBlocks.Dtos.ApplicationRequest
         public Guid Id { get; set; }
         public int IdEmployed { get; set; }
         public Guid CompanyId { get; set; }
-        public bool? Integrity { get; set; } 
+        public bool? Integrity { get; set; }
         public bool IsActive { get; set; }
 
         public string Name { get; set; }

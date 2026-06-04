@@ -35,7 +35,7 @@ namespace EMC.BuildingBlocks.Application.Pagination
             query = request.Order?.ToLower() == "desc" ? query.OrderByDescending(lambda) : query.OrderBy(lambda);
 
             var totalItems = await query.CountAsync(cancellationToken);
-            var items = request.Paginate??true
+            var items = request.Paginate ?? true
                 ? await query
                     .Skip((request.CurrentPage - 1) * request.PageSize)
                     .Take(request.PageSize)

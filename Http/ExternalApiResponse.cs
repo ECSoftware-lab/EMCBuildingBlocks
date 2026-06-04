@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EMC.BuildingBlocks.Http
+﻿namespace EMC.BuildingBlocks.Http
 {
     /// <summary>
     /// Envelope de respuesta común a todos los microservicios EMC.

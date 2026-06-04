@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace EMC.BuildingBlocks.Static.Extensions
+﻿namespace EMC.BuildingBlocks.Static.Extensions
 {
     public static class StringExtensions
     {
@@ -40,7 +38,7 @@ namespace EMC.BuildingBlocks.Static.Extensions
                 .Where(w => !string.IsNullOrWhiteSpace(w))
                 .Select(w => char.ToUpper(w[0]) + w.Substring(1).ToLower()));
         }
-       
+
 
     }
 }

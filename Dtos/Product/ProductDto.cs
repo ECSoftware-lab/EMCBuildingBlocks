@@ -2,13 +2,14 @@
 using Newtonsoft.Json;
 
 namespace EMC.BuildingBlocks.Dtos.Product;
+
 public class ProductDto
 {
     [JsonProperty(Order = 1)]
     public Guid Id { get; set; }
     [JsonProperty(Order = 2)]
     public Guid CompanyId { get; set; }
-    [JsonProperty(Order =3)]
+    [JsonProperty(Order = 3)]
     public bool Integrity { get; set; }
 
     [JsonProperty(Order = 4)]

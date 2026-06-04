@@ -20,13 +20,13 @@ namespace EMC.BuildingBlocks.Middleware
 
         public async Task Invoke(HttpContext context, ICompanyExecutionContext companyContext, ICompanyConfigurationCacheService configCacheService)
         {
-           /* if (context.Request.Path.StartsWithSegments("/oauth/whatsapp/callback",StringComparison.OrdinalIgnoreCase))
-            {
-                await _next(context);
-                return;
-            }*/
-                var pathsPublicos = new[]
-                                {
+            /* if (context.Request.Path.StartsWithSegments("/oauth/whatsapp/callback",StringComparison.OrdinalIgnoreCase))
+             {
+                 await _next(context);
+                 return;
+             }*/
+            var pathsPublicos = new[]
+                            {
                                     "/oauth/whatsapp/callback",
                                     "/api/Private/get-dominio"
                                 };
@@ -77,13 +77,13 @@ namespace EMC.BuildingBlocks.Middleware
                     }
 
                     ctx.KindId = nEmploye;
-                    ctx.KindId= context.User.GetEmployeeNumber() ?? 0;
+                    ctx.KindId = context.User.GetEmployeeNumber() ?? 0;
                     ctx.ActiveSubsidiaryId = context.User.FindFirst("ActiveSubsidiaryId")?.Value switch
                     {
                         null => null,
                         var val when int.TryParse(val, out var subId) => subId,
                         _ => null
-                    }; 
+                    };
                 }
 
                 var config = await configCacheService.GetCompanyConfigAsync(companyId);

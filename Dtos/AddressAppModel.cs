@@ -13,7 +13,7 @@
         public string Complement { get; set; }
         public string? State { get; set; }
         public string? Country { get; set; }
-        
+
         public bool IsCreate { get; set; }
         public bool IsFavorit { get; set; }
         public bool Status { get; set; }

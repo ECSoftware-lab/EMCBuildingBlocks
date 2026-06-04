@@ -11,6 +11,6 @@
         public Dictionary<string, string> Configurations { get; set; } = new();
 
         public int KindId { get; set; }
-        public Dictionary<int, bool>? ConfigPersonType { get;  set; }
+        public Dictionary<int, bool>? ConfigPersonType { get; set; }
     }
 }

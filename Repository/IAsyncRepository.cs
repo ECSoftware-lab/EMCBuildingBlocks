@@ -4,14 +4,14 @@ using System.Linq.Expressions;
 
 namespace EMC.BuildingBlocks.Repository
 {
-    public interface IAsyncRepository<T,TId> where T : class, IEntityWithId<TId>
+    public interface IAsyncRepository<T, TId> where T : class, IEntityWithId<TId>
     {
-        
-        Task<T> GetByIdAsync(TId id, bool disTrk = true, CancellationToken ct = default);
-        Task<T> GetFirstOrDefaultAsync( Expression<Func<T, bool>> predicate = null,
-            List<Expression<Func<T, object>>> includes = null,bool disTrk = true, CancellationToken ct = default);
 
-        Task<T> GetFirstOrDefaultAsync(DbContext context, Expression<Func<T, bool>> predicate = null, 
+        Task<T> GetByIdAsync(TId id, bool disTrk = true, CancellationToken ct = default);
+        Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate = null,
+            List<Expression<Func<T, object>>> includes = null, bool disTrk = true, CancellationToken ct = default);
+
+        Task<T> GetFirstOrDefaultAsync(DbContext context, Expression<Func<T, bool>> predicate = null,
             List<Expression<Func<T, object>>> includes = null, bool disableTracking = true, CancellationToken ct = default);
         Task<IReadOnlyList<T>> GetAllAsync(bool disTrk = true);
         Task<PaginatedResult<T>> ToPaginatedResultAsync(IQueryable<T> query, BasePaginationRequest request, string observation = null, CancellationToken cancellationToken = default);
@@ -20,8 +20,8 @@ namespace EMC.BuildingBlocks.Repository
                                         List<Expression<Func<T, object>>> includes = null,
                                         bool disTrk = true, CancellationToken ct = default);
         #region AddAsync
-        Task<T> AddAsync(T entity, CancellationToken ct = default); 
-        Task<T> AddAsync(DbContext context,T entity);
+        Task<T> AddAsync(T entity, CancellationToken ct = default);
+        Task<T> AddAsync(DbContext context, T entity);
         #endregion
         #region update
 
@@ -32,11 +32,11 @@ namespace EMC.BuildingBlocks.Repository
         Task DeleteAsync(T entity);
         Task DeleteAsync(T entity, DbContext context);
 
-       
-       
-        
+
+
+
 
         Task<List<T>> GetAllFilt(Expression<Func<T, bool>> filter = null);
-       
+
     }
 }

@@ -8,7 +8,7 @@
             public const string TurnoNoShow = "booking.turnonoshow";
             public const string TurnoCreado = "booking.turnocreado";
             public const string TurnoConfirmado = "booking.turnoconfirmado";
-            public const string TurnoCancelado = "booking.turnocancelado"; 
+            public const string TurnoCancelado = "booking.turnocancelado";
             public const string TurnoCompletado = "booking.turnocompletado";
             public const string TurnoReprogramado = "booking.turnoreprogramado";
             public const string PracticaIniciada = "booking.practicainiciada";

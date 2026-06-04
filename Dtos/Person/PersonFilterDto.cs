@@ -8,7 +8,7 @@ namespace EMC.BuildingBlocks.Dtos.Person
         public DateTime? CreateEnd { get; set; }
         public string CompanyId { get; set; }
         public Dictionary<string, string> AttributeFilters { get; set; } = new();
-     
+
         public bool? IsUnique { get; set; }
 
         public List<string>? PersonType { get; set; }
