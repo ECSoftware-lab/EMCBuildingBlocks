@@ -5,34 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Reflection;
 
 namespace EMC.BuildingBlocks.DependencyInjection
 {
     public static class SharedServiceContainer
     {
-      /*  public static IServiceCollection AddValidatorsFromAssembly(this IServiceCollection services, Assembly assembly)
-        {
-            var validatorTypes = assembly
-                .GetTypes()
-                .Where(t => !t.IsAbstract && !t.IsInterface)
-                .SelectMany(t =>
-                    t.GetInterfaces()
-                        .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IValidator<>))
-                        .Select(i => new { ValidatorType = t, InterfaceType = i }))
-                .ToList();
 
-            foreach (var v in validatorTypes)
-            {
-                services.AddScoped(v.InterfaceType, v.ValidatorType);
-            }
-
-            return services;
-        }*/
         public static IServiceCollection AddSharedServices<TContext>(this IServiceCollection services, IConfiguration config
             , string fileName, bool relationalBD = true, string strConextion = "DefaultConnection") where TContext : DbContext
         {
-            
+
             services.AddScoped<ICompanyExecutionContext, CompanyExecutionContext>();
             services.AddScoped<IAddressAppBuilder, AddressAppBuilder>();
 
@@ -69,6 +51,6 @@ namespace EMC.BuildingBlocks.DependencyInjection
         }
 
 
-       
+
     }
 }
