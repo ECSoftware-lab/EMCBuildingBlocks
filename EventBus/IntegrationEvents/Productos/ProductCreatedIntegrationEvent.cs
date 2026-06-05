@@ -1,4 +1,4 @@
-﻿namespace EMC.BuildingBlocks.EventBus.IntegrationEvents
+﻿namespace EMC.BuildingBlocks.EventBus.IntegrationEvents.Productos
 {
     public class ProductCreatedIntegrationEvent : IntegrationEvent
     {

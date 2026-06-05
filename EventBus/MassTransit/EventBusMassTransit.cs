@@ -1,8 +1,8 @@
-﻿using MassTransit;
+﻿//using MassTransit;
 
 namespace EMC.BuildingBlocks.EventBus.MassTransit
 {
-    public class EventBusMassTransit : IEventBus
+   /* public class EventBusMassTransit : IEventBus
     {
         private readonly IPublishEndpoint _publishEndpoint;
 
@@ -15,12 +15,12 @@ namespace EMC.BuildingBlocks.EventBus.MassTransit
         {
             await _publishEndpoint.Publish(@event);
         }
-    }
+    }*/
 
-
+    /*
     public sealed class NoOpEventBus : IEventBus
     {
         public Task PublishAsync<T>(T @event) where T : IntegrationEvent
             => Task.CompletedTask; // no hace nada
-    }
+    }*/
 }
