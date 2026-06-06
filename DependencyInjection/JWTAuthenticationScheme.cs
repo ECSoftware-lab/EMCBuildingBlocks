@@ -19,31 +19,25 @@ namespace EMC.BuildingBlocks.DependencyInjection
             .AddJwtBearer(options =>
             {
                 var key = Encoding.UTF8.GetBytes(config["Authentication:jwtKey"]!);
-                string issuer = config["Authentication:Issuer"]!;
 
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
+
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = issuer,
+                    ValidIssuer = config["Authentication:Issuer"],
+
                     ValidateAudience = true,
+                    ValidAudience = config["Authentication:Audience"],
+
                     ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ClockSkew = TimeSpan.FromMinutes(5),
                     RequireExpirationTime = true,
 
-                    AudienceValidator = (audiences, token, parameters) =>
-                    {
-                        return audiences.Any(aud =>
-                            aud.EndsWith("turneroweb.ar", StringComparison.OrdinalIgnoreCase) ||
-                            aud.EndsWith("empresa1.com", StringComparison.OrdinalIgnoreCase) ||
-                            aud.EndsWith("empresa2.com.ar", StringComparison.OrdinalIgnoreCase) ||
-                            aud.EndsWith("ukyokonails.com.ar", StringComparison.OrdinalIgnoreCase) ||
-                            aud.Contains("localhost", StringComparison.OrdinalIgnoreCase)
-                        );
-                    }
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+
+                    ClockSkew = TimeSpan.FromMinutes(5)
                 };
             });
 
