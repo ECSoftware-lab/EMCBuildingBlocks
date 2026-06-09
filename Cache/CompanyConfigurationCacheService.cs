@@ -10,10 +10,14 @@
             _cache = cache;
         }
 
-        public Task SetCompanyConfigAsync(Guid companyId, Dictionary<string, string> config)
+        public Task SetCompanyConfigAsync(Guid companyId, Dictionary<string, string> config, TimeSpan? expiry = null)
         {
+            if(!expiry.HasValue)
+            {
+                expiry=TimeSpan.FromHours(12);
+            }
             var key = $"{KeyPrefix}{companyId}";
-            return _cache.SetAsync(key, config);
+            return _cache.SetAsync(key, config,expiry);
         }
         public Task RemoveCompanyConfigAsync(Guid companyId)
         {

@@ -2,6 +2,13 @@
 {
     public static class LinkBuilderHelper
     {
+        public static string GenerateEmailCode(int digits = 6)
+        {
+            var rnd = new Random();
+            var min = (int)Math.Pow(10, digits - 1);
+            var max = (int)Math.Pow(10, digits) - 1;
+            return rnd.Next(min, max).ToString();
+        }
         public static string BuildUrl(
             string schema,
             string host,

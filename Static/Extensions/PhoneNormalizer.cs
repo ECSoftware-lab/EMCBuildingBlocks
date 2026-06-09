@@ -2,7 +2,7 @@
 {
     // Application/Helpers/PhoneNormalizer.cs
     public static class PhoneNormalizer
-    {
+    {   // ── privados ───────────────────────────────────────────
         // Países soportados: código → reglas específicas
         // Expandir según los países que maneje tu sistema
         private static readonly Dictionary<string, CountryPhoneRule> Rules = new()
@@ -29,14 +29,58 @@
             ["UY"] = new CountryPhoneRule
             {
                 CountryCode = "598",
-                AreaMinLength = 2,
-                AreaMaxLength = 2,
-                NumberLength = 7,
+                AreaMinLength = 0,
+                AreaMaxLength = 0,
+                NumberLength = 8,
                 MobilePrefix = null,
                 StripLeading = ["0"]
             }
         };
 
+        public class PhonePartsDto
+        {
+            public string CountryIso { get; set; } = "";
+            public string CountryCode { get; set; } = "";
+            public string? MobilePrefix { get; set; }
+            public string AreaCode { get; set; } = "";
+            public string LocalNumber { get; set; } = "";
+            public string FullNormalized { get; set; } = ""; // E.164 sin +
+            public string DisplayFormat { get; set; } = "";  // Ej: "54 9 381-191420"
+        }
+
+        public static PhonePartsDto SplitPhone(string rawNumber, string countryIso = "AR")
+        {
+            var rule = GetRule(countryIso);
+            var digits = new string(rawNumber.Where(char.IsDigit).ToArray());
+
+            // separar área y número según reglas
+            string area = digits[..rule.AreaMaxLength];
+            string local = digits[rule.AreaMaxLength..];
+
+            // prefijo móvil si aplica
+            string? mobilePrefix = rule.MobilePrefix;
+
+            // número completo normalizado
+            var full = rule.CountryCode + (mobilePrefix ?? "") + area + local;
+
+            // formato para mostrar
+            var display = rule.CountryCode + " "
+                        + (mobilePrefix is not null ? mobilePrefix + " " : "")
+                        + area + "-" + local;
+
+            return new PhonePartsDto
+            {
+                CountryIso = countryIso,
+                CountryCode = rule.CountryCode,
+                MobilePrefix = mobilePrefix,
+                AreaCode = area,
+                LocalNumber = local,
+                FullNormalized = full,
+                DisplayFormat = display
+            };
+        }
+
+       
         /// <summary>
         /// Normaliza y valida un teléfono a formato E.164 sin +
         /// Lanza PhoneValidationException si no se puede normalizar.
@@ -90,8 +134,7 @@
             }
         }
 
-        // ── privados ───────────────────────────────────────────
-
+     
         private static string ApplyCountryRules(string digits, CountryPhoneRule rule)
         {
             // sacar prefijos locales configurados (ej: "0", "15")

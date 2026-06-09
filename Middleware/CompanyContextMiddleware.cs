@@ -11,7 +11,6 @@ namespace EMC.BuildingBlocks.Middleware
     public class CompanyContextMiddleware
     {
         private readonly RequestDelegate _next;
-
         public CompanyContextMiddleware(RequestDelegate next)
         {
             _next = next;
@@ -20,16 +19,7 @@ namespace EMC.BuildingBlocks.Middleware
 
         public async Task Invoke(HttpContext context, ICompanyExecutionContext companyContext, ICompanyConfigurationCacheService configCacheService)
         {
-            /* if (context.Request.Path.StartsWithSegments("/oauth/whatsapp/callback",StringComparison.OrdinalIgnoreCase))
-             {
-                 await _next(context);
-                 return;
-             }*/
-            //if (context.Request.Path.StartsWithSegments("/swagger"))
-            //{
-            //    await _next(context);
-            //    return;
-            //}
+             
             var pathsPublicos = new[]
                             {
                                     "/oauth/whatsapp/callback",
@@ -94,12 +84,13 @@ namespace EMC.BuildingBlocks.Middleware
                 var config = await configCacheService.GetCompanyConfigAsync(companyId);
                 if (config == null)
                 {
+
                     await EscribirErrorAsync(context, 503, "No se encontró configuración para la compañía en cache");
                     return;
                 }
 
                 ctx.Configurations = config;
-                ctx.ConfigPersonType = await configCacheService.GetCompanyConfigPersonTypeAsync(companyId);
+                //ctx.ConfigPersonType = await configCacheService.GetCompanyConfigPersonTypeAsync(companyId);
             }
 
             await _next(context);

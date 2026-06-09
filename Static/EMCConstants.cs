@@ -2,6 +2,46 @@
 {
     public class EMCConstants
     {
+        public enum TypeCompanyConfiguration
+        {
+            LOGICAPERSON,
+            COMPANYNAME,
+            FANTASYNAME,
+            SUBDOMAIN,
+            TIMEZONE,
+            URALFRONTEND,
+            UPDATEPERSONADDRESSEMPTY,
+            REQUIRED_PHONE,
+            REQUIRED_ADDRESS,
+            FIND_TYPE,
+            SCHEMA,
+            MAILFROM,
+            MAILNAME,
+            MAILPORT,
+            MAILUSERNAME,
+            MAILSMTP,
+            MAILPASSWORD
+        }
+        public static Dictionary<TypeCompanyConfiguration, string> CompanyConfigurationList = new Dictionary<TypeCompanyConfiguration, string>
+            {
+        { TypeCompanyConfiguration.LOGICAPERSON, "logica_Crear_Persona" },
+        { TypeCompanyConfiguration.COMPANYNAME, "companyName" },
+        { TypeCompanyConfiguration.FANTASYNAME, "fantasyName" },
+        { TypeCompanyConfiguration.SUBDOMAIN, "subdomain" },
+        { TypeCompanyConfiguration.TIMEZONE, "timeZone" },
+        { TypeCompanyConfiguration.URALFRONTEND, "urlBaseFrontEnd" },
+        { TypeCompanyConfiguration.UPDATEPERSONADDRESSEMPTY, "updatePersonAddressEmpty" },
+        { TypeCompanyConfiguration.REQUIRED_PHONE, "requiredPhone" },
+        { TypeCompanyConfiguration.REQUIRED_ADDRESS, "requiredAddress" },
+        { TypeCompanyConfiguration.FIND_TYPE, "findType" },
+        { TypeCompanyConfiguration.SCHEMA, "schema" },
+        { TypeCompanyConfiguration.MAILFROM, "mail:From" },
+        { TypeCompanyConfiguration.MAILNAME, "mail:Name" },
+        { TypeCompanyConfiguration.MAILPORT, "mail:Port" },
+        { TypeCompanyConfiguration.MAILUSERNAME, "mail:Username" },
+        { TypeCompanyConfiguration.MAILSMTP, "mail:Smtp" },
+        { TypeCompanyConfiguration.MAILPASSWORD, "mail:Password" }
+         };
         public class EventType
         {
             public const string SlotLiberado = "booking.slotliberadohoy";

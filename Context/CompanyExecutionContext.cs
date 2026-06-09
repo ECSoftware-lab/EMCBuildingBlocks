@@ -11,6 +11,16 @@
         public Dictionary<string, string> Configurations { get; set; } = new();
 
         public int KindId { get; set; }
-        public Dictionary<int, bool>? ConfigPersonType { get; set; }
+
+        public string CompanyName { get; set; }
+
+        public string TimeZone =>
+         Configurations.TryGetValue("timeZone", out var value) && !string.IsNullOrWhiteSpace(value)
+             ? value
+             : "UTC";
+
+        public bool CompanyEnabled =>
+       Configurations.TryGetValue("companyEnabled", out var value) &&
+       string.Equals(value, "TRUE", StringComparison.OrdinalIgnoreCase);
     }
 }
