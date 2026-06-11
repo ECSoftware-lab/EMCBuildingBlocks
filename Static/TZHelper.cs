@@ -1,20 +1,16 @@
-﻿using EMC.BuildingBlocks.Context;
-using static Grpc.Core.Metadata;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-
-namespace EMC.BuildingBlocks.Static
+﻿namespace EMC.BuildingBlocks.Static
 {   /// <summary>
     /// MS-Usuarios guarda "Argentina" — EF/Npgsql necesita el IANA completo.
     /// Expandí según los valores reales que uses.
     /// </summary>
     public static class TZHelper
-    { 
-        public static DateTime Convert(DateTime dateTime,string timeZone)
+    {
+        public static DateTime Convert(DateTime dateTime, string timeZone)
         {
             var TimeZone = timeZone ?? "UTC";
             var tz = TimeZoneInfo.FindSystemTimeZoneById(TimeZone);
-            var utcDate = DateTime.SpecifyKind(dateTime,   DateTimeKind.Utc);
-            var fechaLocal = TimeZoneInfo.ConvertTimeFromUtc(    utcDate,    tz);
+            var utcDate = DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
+            var fechaLocal = TimeZoneInfo.ConvertTimeFromUtc(utcDate, tz);
 
             return fechaLocal;
         }

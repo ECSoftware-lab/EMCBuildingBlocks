@@ -80,7 +80,7 @@
             };
         }
 
-       
+
         /// <summary>
         /// Normaliza y valida un teléfono a formato E.164 sin +
         /// Lanza PhoneValidationException si no se puede normalizar.
@@ -134,7 +134,7 @@
             }
         }
 
-     
+
         private static string ApplyCountryRules(string digits, CountryPhoneRule rule)
         {
             // sacar prefijos locales configurados (ej: "0", "15")

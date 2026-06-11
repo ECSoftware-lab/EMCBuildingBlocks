@@ -15,7 +15,7 @@ namespace EMC.BuildingBlocks.EventBus.Rebus
         {
             await _bus.Publish(@event);
         }
-     
+
     }
 
     public sealed class NoOpEventBus : IEventBus

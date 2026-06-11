@@ -19,7 +19,7 @@ namespace EMC.BuildingBlocks.Middleware
 
         public async Task Invoke(HttpContext context, ICompanyExecutionContext companyContext, ICompanyConfigurationCacheService configCacheService)
         {
-             
+
             var pathsPublicos = new[]
                             {
                                     "/oauth/whatsapp/callback",

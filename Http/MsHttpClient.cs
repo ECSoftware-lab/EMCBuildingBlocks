@@ -136,6 +136,12 @@ namespace EMC.BuildingBlocks.Http
             _logger.LogInformation("[MsHttpClient] GET {Client}/{Endpoint} companyId={CompanyId}",
                 clientName, endpoint, companyId);
 
+            var fullUrl = client.BaseAddress != null
+    ? new Uri(client.BaseAddress, endpoint).ToString()
+    : endpoint;
+
+            _logger.LogInformation("[MsHttpClient] URL completa: {Url}", fullUrl);
+
             HttpResponseMessage httpResponse;
             try
             {
