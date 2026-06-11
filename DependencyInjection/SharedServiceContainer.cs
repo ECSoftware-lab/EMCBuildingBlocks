@@ -33,7 +33,7 @@ namespace EMC.BuildingBlocks.DependencyInjection
                     options.EnableSensitiveDataLogging(false);
                     options.LogTo(Console.WriteLine, LogLevel.Information);
                     options.ConfigureWarnings(w =>
-        w.Ignore(RelationalEventId.PendingModelChangesWarning));
+                    w.Ignore(RelationalEventId.PendingModelChangesWarning));
                 });
 
 

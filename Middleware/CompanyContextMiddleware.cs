@@ -23,7 +23,9 @@ namespace EMC.BuildingBlocks.Middleware
             var pathsPublicos = new[]
                             {
                                     "/oauth/whatsapp/callback",
-                                    "/api/Private/get-dominio"
+                                    "/api/Private/get-dominio",
+                                    "/health/live",
+                                    "/health"
                                 };
 
             if (pathsPublicos.Any(p =>
