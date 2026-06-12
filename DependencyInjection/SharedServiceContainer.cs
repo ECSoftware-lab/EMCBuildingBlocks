@@ -2,6 +2,7 @@
 using EMC.BuildingBlocks.Context;
 using EMC.BuildingBlocks.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -31,6 +32,8 @@ namespace EMC.BuildingBlocks.DependencyInjection
                     options.UseNpgsql(connectionString);
                     options.EnableSensitiveDataLogging(false);
                     options.LogTo(Console.WriteLine, LogLevel.Information);
+                    options.ConfigureWarnings(w =>
+                    w.Ignore(RelationalEventId.PendingModelChangesWarning));
                 });
 
 
