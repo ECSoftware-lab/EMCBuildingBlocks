@@ -40,27 +40,22 @@ namespace EMC.BuildingBlocks.Http
 
         // ── POST ─────────────────────────────────────────────────────────────────
 
-        public async Task<TResponse> PostAsync<TRequest, TResponse>(
-            string clientName,
-            string endpoint,
-            TRequest body,
-            Guid companyId,
-            string? bearerToken = null,
-            CancellationToken ct = default)
+        public async Task<ExternalApiResponse<TResponse>> PostAsync<TRequest, TResponse>(string clientName, string endpoint, TRequest body, Guid companyId, string? bearerToken = null, CancellationToken ct = default)
         {
             var client = BuildClient(clientName, companyId, bearerToken);
-            _logger.LogInformation("[MsHttpClient] POST {Client}/{Endpoint} companyId={CompanyId}",
-                clientName, endpoint, companyId);
+
+            _logger.LogInformation("[MsHttpClient] POST {Client}/{Endpoint} companyId={CompanyId}", clientName, endpoint, companyId);
 
             HttpResponseMessage httpResponse;
             try
             {
-                var fullUrl = new Uri(client.BaseAddress!, endpoint).ToString();
                 var prueba = JsonSerializer.Serialize(body, JsonOptions);
                 httpResponse = await client.PostAsJsonAsync(endpoint, body, JsonOptions, ct);
             }
             catch (TaskCanceledException) when (!ct.IsCancellationRequested)
             {
+                var fullUrl = new Uri(client.BaseAddress!, endpoint).ToString();
+                _logger.LogCritical("Error para Url {fulUrl}", fullUrl);
                 throw new MsHttpException($"Timeout en POST {clientName}/{endpoint}");
             }
             catch (HttpRequestException ex)
@@ -68,17 +63,12 @@ namespace EMC.BuildingBlocks.Http
                 throw new MsHttpException($"Error de red en POST {clientName}/{endpoint}: {ex.Message}");
             }
 
-            return await ParseResponse<TResponse>(httpResponse, endpoint, ct);
+            return await ParseResponseFull<TResponse>(httpResponse, endpoint, ct);
         }
         // ── PUT ──────────────────────────────────────────────────────────────────
 
-        public async Task<ExternalApiResponse<TResponse>> PutAsync<TRequest, TResponse>(
-    string clientName,
-    string endpoint,
-    TRequest body,
-    Guid companyId,
-    string? bearerToken = null,
-    CancellationToken ct = default)
+        public async Task<ExternalApiResponse<TResponse>> PutAsync<TRequest, TResponse>(string clientName, string endpoint,
+                                        TRequest body, Guid companyId, string? bearerToken = null, CancellationToken ct = default)
         {
             var client = BuildClient(clientName, companyId, bearerToken);
 
@@ -110,14 +100,12 @@ namespace EMC.BuildingBlocks.Http
 
             return await ParseResponseFull<TResponse>(httpResponse, endpoint, ct);
         }
+
+
         // ── GET ──────────────────────────────────────────────────────────────────
 
-        public async Task<ExternalApiResponse<TResponse>> GetAsync<TResponse>(
-            string clientName,
-            string endpoint,
-            Guid companyId,
-            string? bearerToken = null,
-            CancellationToken ct = default)
+        public async Task<ExternalApiResponse<TResponse>> GetAsync<TResponse>(string clientName, string endpoint,
+            Guid companyId, string? bearerToken = null, CancellationToken ct = default)
         {
             var client = BuildClient(clientName, companyId, bearerToken);
             // ─── LOG DETALLADO ───────────────────────────────────────

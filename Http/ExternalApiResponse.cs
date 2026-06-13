@@ -1,4 +1,7 @@
-﻿namespace EMC.BuildingBlocks.Http
+﻿using EMC.ErrorHandling.Errors;
+using EMC.ErrorHandling.Models;
+
+namespace EMC.BuildingBlocks.Http
 {
     /// <summary>
     /// Envelope de respuesta común a todos los microservicios EMC.
@@ -19,4 +22,6 @@
     }
 
     public record ExternalApiError(int Code, string Message);
+
+   
 }
