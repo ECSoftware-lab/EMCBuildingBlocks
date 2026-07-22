@@ -6,6 +6,7 @@ namespace EMC.BuildingBlocks.Repository
     {
         Task<DbContext> BeginTransactionAsync();
         Task CommitTransactionAsync(DbContext context);
+        Task<DbContext> CreateFreshContextAsync();
         Task RollbackTransactionAsync(DbContext context);
         Task<int> SaveChangesAsync(DbContext context);
     }
