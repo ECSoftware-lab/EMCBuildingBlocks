@@ -1,4 +1,6 @@
-﻿namespace EMC.BuildingBlocks.Static
+﻿using System.Globalization;
+
+namespace EMC.BuildingBlocks.Static
 {   /// <summary>
     /// MS-Usuarios guarda "Argentina" — EF/Npgsql necesita el IANA completo.
     /// Expandí según los valores reales que uses.
@@ -14,6 +16,30 @@
 
             return fechaLocal;
         }
+        public static DateTimeOffset ConvertToUtc(DateTime fechaLocal, string timeZone)
+        {
+            var tz = TimeZoneInfo.FindSystemTimeZoneById(timeZone);
+
+            var offset = tz.GetUtcOffset(fechaLocal);
+
+            var dto = new DateTimeOffset(fechaLocal, offset);
+
+            return dto.ToUniversalTime();
+        }
+
+        public static DateTimeOffset ConvertFromUtc(DateTimeOffset fechaUtc, string timeZone)
+        {
+            var tz = TimeZoneInfo.FindSystemTimeZoneById(timeZone);
+
+            return TimeZoneInfo.ConvertTime(fechaUtc, tz);
+        }
+        public static DateTime ConvertFromUtcToLocalDateTime(DateTimeOffset fechaUtc, string timeZone)
+        {
+            var tz = TimeZoneInfo.FindSystemTimeZoneById(timeZone);
+
+            return TimeZoneInfo.ConvertTime(fechaUtc, tz).DateTime;
+        }
+
         public static string Normalize(string? input)
         {
             if (string.IsNullOrWhiteSpace(input))
@@ -46,6 +72,14 @@
                 _ => input
             };
         }
+
+
+
+        public static string Format(DateTimeOffset fechaLocal, string formatoPreferido = "yyyy-MM-ddTHH:mm")
+        {
+            return fechaLocal.ToString(formatoPreferido, CultureInfo.InvariantCulture);
+        }
+
 
     }
 
