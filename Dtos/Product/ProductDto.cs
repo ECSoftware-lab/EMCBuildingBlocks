@@ -30,4 +30,6 @@ public class ProductDto
     public BaseDto Base { get; set; }
     [JsonProperty(Order = 11)]
     public bool Status { get; set; }
+    [JsonProperty(Order = 12)]
+    public bool TracksStock { get; set; }
 }

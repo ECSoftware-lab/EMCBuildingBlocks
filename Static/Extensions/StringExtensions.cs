@@ -27,8 +27,8 @@
         {
             return input?.Trim()?.ToLowerInvariant();
         }
-        public static string CapitalizeWords(this string input)
-        {
+        public static string CapitalizeWordsSacar(this string input)
+        {// esto si lo dejo CapitalizeWords es ambiguo con el paquete   tucusof
             if (string.IsNullOrWhiteSpace(input))
             {
                 return string.Empty;

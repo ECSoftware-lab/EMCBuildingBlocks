@@ -10,7 +10,7 @@
         public Dictionary<string, string>? Filters { get; set; } = new();
 
         public List<string>? CategoryNames { get; set; } = new List<string>();
-        public Dictionary<string, List<string>>? AttributeShareds { get; set; } = new Dictionary<string, List<string>>();
+        public Dictionary<int, List<string>>? AttributeShareds { get; set; } = new Dictionary<int, List<string>>();
 
         public int FilterType { get; init; }
         public string? TextFilter { get; init; }
