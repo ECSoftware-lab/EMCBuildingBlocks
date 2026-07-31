@@ -3,7 +3,7 @@
     public class ProductRequestDto
     {
         public bool TracksStock { get; set; }
-
+        public int? ProductGroupId { get; set; }
         public int IdEmployed { get; set; }
         public Guid CompanyId { get; set; }
         public string? CadBarra { get; set; }
